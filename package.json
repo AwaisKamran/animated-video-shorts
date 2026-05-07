@@ -1,0 +1,30 @@
+{
+  "name": "the-code-cruise-shorts",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "studio": "remotion studio src/remotion/index.ts",
+    "render": "remotion render NetworkingShort"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@remotion/bundler": "^4.0.288",
+    "@remotion/cli": "^4.0.288",
+    "@remotion/google-fonts": "^4.0.288",
+    "@remotion/player": "^4.0.288",
+    "@remotion/renderer": "^4.0.288",
+    "next": "^15.3.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "remotion": "^4.0.288"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "^5"
+  }
+}
