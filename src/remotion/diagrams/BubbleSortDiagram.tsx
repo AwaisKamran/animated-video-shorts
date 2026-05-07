@@ -20,10 +20,8 @@ const BAR_W = 90;
 const BAR_GAP = 20;
 const BARS_TOTAL = N * BAR_W + (N - 1) * BAR_GAP;
 const BARS_X0 = (W - BARS_TOTAL) / 2;
-const BASE_Y = 540;
-const MAX_H = 380;
-
-function barHeight(val: number) { return (val / 100) * MAX_H; }
+const BLOCK_H = 100;
+const BLOCK_Y = 250;
 
 const PASSES = [
   [
@@ -131,8 +129,6 @@ export const BubbleSortDiagram: React.FC<Props> = ({ frame, duration, keyTerms =
 
       {currentArr.map((val, i) => {
         const bx = BARS_X0 + i * (BAR_W + BAR_GAP);
-        const bh = barHeight(val);
-        const by = BASE_Y - bh;
         const isHighlighted = highlightPair.includes(i);
         const isSortedFinal = overallProgress === 4;
         const isSortedPos = i >= sortedFrom[0] && overallProgress < 4;
@@ -141,14 +137,14 @@ export const BubbleSortDiagram: React.FC<Props> = ({ frame, duration, keyTerms =
 
         return (
           <g key={i}>
-            <rect x={bx} y={by} width={BAR_W} height={bh} rx="6"
+            <rect x={bx} y={BLOCK_Y} width={BAR_W} height={BLOCK_H} rx="6"
               fill={barColor}
               fillOpacity={isHighlighted ? (hiBubble || hiSwap ? 0.75 : 0.55) : 0.35}
               stroke={barColor}
               strokeWidth={isHighlighted ? 2.5 : 1.5}
               filter={(isHighlighted && (hiBubble || hiSwap)) || isSwap ? "url(#bs-glow-sm)" : undefined}
             />
-            <text x={bx + BAR_W / 2} y={by - 10} textAnchor="middle"
+            <text x={bx + BAR_W / 2} y={BLOCK_Y + BLOCK_H / 2 + 6} textAnchor="middle"
               fill={barColor} fontFamily={T.mono} fontSize="14" fontWeight="700">
               {val}
             </text>
@@ -158,21 +154,21 @@ export const BubbleSortDiagram: React.FC<Props> = ({ frame, duration, keyTerms =
 
       {highlightPair.length === 2 && hiSwap && (
         <g>
-          <text x={BARS_X0 + highlightPair[0] * (BAR_W + BAR_GAP) + BAR_W / 2} y={BASE_Y + 28}
+          <text x={BARS_X0 + highlightPair[0] * (BAR_W + BAR_GAP) + BAR_W / 2} y={BLOCK_Y + BLOCK_H + 24}
             textAnchor="middle" fill={T.amber} fontFamily={T.sans} fontSize="11" fontWeight="700">
             SWAP
           </text>
         </g>
       )}
 
-      <rect x={W / 2 - 90} y={BASE_Y + 50} width={180} height={38} rx="19"
+      <rect x={W / 2 - 90} y={BLOCK_Y + BLOCK_H + 60} width={180} height={38} rx="19"
         fill={overallProgress === 4 ? T.mint : (hiPass ? T.cyan : T.bgDeep)}
         fillOpacity={overallProgress === 4 ? 0.22 : (hiPass ? 0.18 : 0.6)}
         stroke={overallProgress === 4 ? T.mint : T.cyan}
         strokeWidth="2"
         filter={(overallProgress === 4 || hiPass) ? "url(#bs-glow-sm)" : undefined}
       />
-      <text x={W / 2} y={BASE_Y + 74} textAnchor="middle"
+      <text x={W / 2} y={BLOCK_Y + BLOCK_H + 84} textAnchor="middle"
         fill={overallProgress === 4 ? T.mint : T.cyan}
         fontFamily={T.sans} fontSize="14" fontWeight="700" letterSpacing="2">
         {passLabel}

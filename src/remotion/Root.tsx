@@ -11,12 +11,6 @@ const DEFAULT_SCRIPT: VideoScript = {
   concept: "tcp-handshake",
   scenes: [
     {
-      type: "intro",
-      headline: "TCP HANDSHAKE",
-      voiceover: "Every time you open a website, your computer does something remarkable before a single byte of data loads. Let's talk about the TCP handshake.",
-      duration: 6,
-    },
-    {
       type: "concept",
       headline: "What is TCP?",
       subtext: "Transmission Control Protocol — the internet's guaranteed delivery system. Every web request uses it.",
@@ -68,13 +62,6 @@ const DEFAULT_SCRIPT: VideoScript = {
       diagramType: "none",
       keyTerms: ["UDP"],
       duration: 8,
-    },
-    {
-      type: "outro",
-      headline: "3 packets. 1 connection.",
-      subtext: "Every TCP connection starts with this exchange — no exceptions.",
-      voiceover: "Three packets. That's all it takes to open every connection on the internet. If you found this useful, follow for more — I break down one networking concept every week.",
-      duration: 6,
     },
   ],
 };

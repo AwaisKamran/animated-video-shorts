@@ -20,10 +20,8 @@ const BAR_W = 90;
 const BAR_GAP = 22;
 const BARS_TOTAL = N * BAR_W + (N - 1) * BAR_GAP;
 const BARS_X0 = (W - BARS_TOTAL) / 2;
-const BASE_Y = 540;
-const MAX_H = 380;
-
-function barH(val: number) { return (val / 100) * MAX_H; }
+const BLOCK_H = 100;
+const BLOCK_Y = 250;
 
 function runSelectionSort(arr: number[]): { arr: number[]; sortedEnd: number; minIdx: number; scanIdx: number }[] {
   const steps: { arr: number[]; sortedEnd: number; minIdx: number; scanIdx: number }[] = [];
@@ -97,8 +95,6 @@ export const SelectionSortDiagram: React.FC<Props> = ({ frame, duration, keyTerm
 
       {arr.map((val, i) => {
         const bx = BARS_X0 + i * (BAR_W + BAR_GAP);
-        const bh = barH(val);
-        const by = BASE_Y - bh;
         const isSorted = doneIn > 0.1 ? true : i < sortedEnd;
         const isMin = i === minIdx && doneIn < 0.1;
         const isScan = i === scanIdx && doneIn < 0.1;
@@ -106,26 +102,26 @@ export const SelectionSortDiagram: React.FC<Props> = ({ frame, duration, keyTerm
 
         return (
           <g key={i}>
-            <rect x={bx} y={by} width={BAR_W} height={bh} rx="6"
+            <rect x={bx} y={BLOCK_Y} width={BAR_W} height={BLOCK_H} rx="6"
               fill={barColor}
               fillOpacity={isMin ? (hiMin ? 0.75 : 0.55) : isSorted ? 0.45 : isScan ? 0.45 : 0.25}
               stroke={barColor}
               strokeWidth={isMin || isScan ? 2.5 : 1.5}
               filter={isMin && hiMin ? "url(#ss-glow-sm)" : isScan ? "url(#ss-glow-sm)" : undefined}
             />
-            <text x={bx + BAR_W / 2} y={by - 10} textAnchor="middle"
+            <text x={bx + BAR_W / 2} y={BLOCK_Y + BLOCK_H / 2 + 6} textAnchor="middle"
               fill={barColor} fontFamily={T.mono} fontSize="14" fontWeight="700">
               {val}
             </text>
             {isMin && (
-              <text x={bx + BAR_W / 2} y={BASE_Y + 26} textAnchor="middle"
+              <text x={bx + BAR_W / 2} y={BLOCK_Y + BLOCK_H + 24} textAnchor="middle"
                 fill={T.coral} fontFamily={T.sans} fontSize="10" fontWeight="700"
                 filter={hiMin ? "url(#ss-glow-sm)" : undefined}>
                 MIN
               </text>
             )}
             {isScan && !isMin && (
-              <text x={bx + BAR_W / 2} y={BASE_Y + 26} textAnchor="middle"
+              <text x={bx + BAR_W / 2} y={BLOCK_Y + BLOCK_H + 24} textAnchor="middle"
                 fill={T.amber} fontFamily={T.sans} fontSize="10">
                 scan
               </text>
@@ -134,28 +130,14 @@ export const SelectionSortDiagram: React.FC<Props> = ({ frame, duration, keyTerm
         );
       })}
 
-      {scanIdx > 0 && doneIn < 0.1 && (
-        <line
-          x1={BARS_X0 + scanIdx * (BAR_W + BAR_GAP) + BAR_W / 2}
-          y1={BASE_Y - barH(arr[scanIdx]) - 14}
-          x2={BARS_X0 + (scanIdx - 1) * (BAR_W + BAR_GAP) + BAR_W / 2}
-          y2={BASE_Y - barH(arr[scanIdx - 1]) - 14}
-          stroke={T.coral}
-          strokeWidth="2"
-          strokeDasharray="6 3"
-          markerEnd="url(#ss-arr)"
-          opacity={hiSel ? 0.9 : 0.5}
-        />
-      )}
-
-      <rect x={W / 2 - 150} y={BASE_Y + 50} width={300} height={38} rx="19"
+      <rect x={W / 2 - 150} y={BLOCK_Y + BLOCK_H + 60} width={300} height={38} rx="19"
         fill={doneIn > 0.5 ? T.mint : T.bgDeep}
         fillOpacity={doneIn > 0.5 ? 0.22 : 0.6}
         stroke={doneIn > 0.5 ? T.mint : T.coral}
         strokeWidth="2"
         filter={doneIn > 0.5 || hiSel ? "url(#ss-glow-sm)" : undefined}
       />
-      <text x={W / 2} y={BASE_Y + 74} textAnchor="middle"
+      <text x={W / 2} y={BLOCK_Y + BLOCK_H + 84} textAnchor="middle"
         fill={doneIn > 0.5 ? T.mint : T.coral}
         fontFamily={T.sans} fontSize="13" fontWeight="700" letterSpacing="1.5">
         {doneIn > 0.5 ? "SORTED" : `ITERATION ${iteration} / ${N}  ·  MIN = ${minVal}`}

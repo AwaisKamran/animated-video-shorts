@@ -20,10 +20,8 @@ const BAR_W = 86;
 const BAR_GAP = 20;
 const BARS_TOTAL = N * BAR_W + (N - 1) * BAR_GAP;
 const BARS_X0 = (W - BARS_TOTAL) / 2;
-const BASE_Y = 480;
-const MAX_H = 340;
-
-function barH(val: number) { return (val / 100) * MAX_H; }
+const BLOCK_H = 100;
+const BLOCK_Y = 250;
 
 const PARTITION_STEPS = [
   { arr: [64, 34, 25, 12, 22, 11, 90, 45], pivot: 7, i: -1, j: 0, pivotFinal: -1 },
@@ -94,8 +92,6 @@ export const QuickSortDiagram: React.FC<Props> = ({ frame, duration, keyTerms = 
 
       {arr.map((val, i) => {
         const bx = BARS_X0 + i * (BAR_W + BAR_GAP);
-        const bh = barH(val);
-        const by = BASE_Y - bh;
         const isPivot = i === pivotBar && pivotFinal < 0 && doneIn < 0.1;
         const isPivotFinal = i === pivotFinal && doneIn < 0.5;
         const isDone = doneIn > 0.5;
@@ -116,19 +112,19 @@ export const QuickSortDiagram: React.FC<Props> = ({ frame, duration, keyTerms = 
 
         return (
           <g key={i}>
-            <rect x={bx} y={by} width={BAR_W} height={bh} rx="6"
+            <rect x={bx} y={BLOCK_Y} width={BAR_W} height={BLOCK_H} rx="6"
               fill={barColor}
               fillOpacity={isPivot ? 0.60 : isPivotFinal ? 0.50 : isSmall ? 0.35 : isDone ? 0.45 : 0.30}
               stroke={barColor}
               strokeWidth={isPivot || isPivotFinal ? 2.5 : 1.5}
               filter={glowing ? "url(#qs-glow-sm)" : undefined}
             />
-            <text x={bx + BAR_W / 2} y={by - 10} textAnchor="middle"
+            <text x={bx + BAR_W / 2} y={BLOCK_Y + BLOCK_H / 2 + 6} textAnchor="middle"
               fill={barColor} fontFamily={T.mono} fontSize="14" fontWeight="700">
               {val}
             </text>
             {isPivot && (
-              <text x={bx + BAR_W / 2} y={BASE_Y + 28} textAnchor="middle"
+              <text x={bx + BAR_W / 2} y={BLOCK_Y + BLOCK_H + 24} textAnchor="middle"
                 fill={T.amber} fontFamily={T.sans} fontSize="11" fontWeight="700"
                 filter={hiPivot ? "url(#qs-glow-sm)" : undefined}>
                 PIVOT
@@ -140,7 +136,7 @@ export const QuickSortDiagram: React.FC<Props> = ({ frame, duration, keyTerms = 
 
       {iPointer >= 0 && pivotFinal < 0 && doneIn < 0.1 && (
         <g>
-          <text x={BARS_X0 + iPointer * (BAR_W + BAR_GAP) + BAR_W / 2} y={BASE_Y + 52}
+          <text x={BARS_X0 + iPointer * (BAR_W + BAR_GAP) + BAR_W / 2} y={BLOCK_Y + BLOCK_H + 24}
             textAnchor="middle" fill={T.mint} fontFamily={T.mono} fontSize="12" fontWeight="700">
             i
           </text>
@@ -149,7 +145,7 @@ export const QuickSortDiagram: React.FC<Props> = ({ frame, duration, keyTerms = 
 
       {jPointer >= 0 && pivotFinal < 0 && doneIn < 0.1 && (
         <g>
-          <text x={BARS_X0 + jPointer * (BAR_W + BAR_GAP) + BAR_W / 2} y={BASE_Y + 66}
+          <text x={BARS_X0 + jPointer * (BAR_W + BAR_GAP) + BAR_W / 2} y={BLOCK_Y + BLOCK_H + 44}
             textAnchor="middle" fill={T.cyan} fontFamily={T.mono} fontSize="12" fontWeight="700">
             j
           </text>
@@ -158,25 +154,25 @@ export const QuickSortDiagram: React.FC<Props> = ({ frame, duration, keyTerms = 
 
       {pivotFinal >= 0 && doneIn < 0.1 && (
         <g>
-          <line x1={BARS_X0 + pivotFinal * (BAR_W + BAR_GAP) + BAR_W / 2} y1={80}
-            x2={BARS_X0 + pivotFinal * (BAR_W + BAR_GAP) + BAR_W / 2} y2={BASE_Y}
+          <line x1={BARS_X0 + pivotFinal * (BAR_W + BAR_GAP) + BAR_W / 2} y1={BLOCK_Y - 30}
+            x2={BARS_X0 + pivotFinal * (BAR_W + BAR_GAP) + BAR_W / 2} y2={BLOCK_Y + BLOCK_H + 30}
             stroke={T.mint} strokeWidth="1.5" strokeDasharray="8 4" opacity="0.5"
           />
-          <text x={BARS_X0 + pivotFinal * (BAR_W + BAR_GAP) + BAR_W / 2} y={74}
+          <text x={BARS_X0 + pivotFinal * (BAR_W + BAR_GAP) + BAR_W / 2} y={BLOCK_Y - 40}
             textAnchor="middle" fill={T.mint} fontFamily={T.sans} fontSize="11" fontWeight="700">
             PARTITIONED
           </text>
         </g>
       )}
 
-      <rect x={W / 2 - 100} y={BASE_Y + 90} width={200} height={38} rx="19"
+      <rect x={W / 2 - 100} y={BLOCK_Y + BLOCK_H + 70} width={200} height={38} rx="19"
         fill={doneIn > 0.5 ? T.mint : T.bgDeep}
         fillOpacity={doneIn > 0.5 ? 0.22 : 0.6}
         stroke={doneIn > 0.5 ? T.mint : T.amber}
         strokeWidth="2"
         filter={doneIn > 0.5 ? "url(#qs-glow-sm)" : undefined}
       />
-      <text x={W / 2} y={BASE_Y + 114} textAnchor="middle"
+      <text x={W / 2} y={BLOCK_Y + BLOCK_H + 94} textAnchor="middle"
         fill={doneIn > 0.5 ? T.mint : T.amber}
         fontFamily={T.sans} fontSize="13" fontWeight="700" letterSpacing="1.5">
         {doneIn > 0.5 ? "SORTED" : (pivotFinal >= 0 ? "PARTITIONED" : "PARTITIONING...")}

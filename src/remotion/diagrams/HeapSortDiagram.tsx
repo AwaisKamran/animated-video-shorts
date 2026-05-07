@@ -17,7 +17,7 @@ const HEAP_INITIAL = [16, 14, 10, 8, 7, 9, 3, 2, 4, 1];
 const HEAP_N = 7;
 
 const TREE_CX = 310;
-const TREE_TOP_Y = 100;
+const TREE_TOP_Y = 120;
 const LEVEL_H = 120;
 
 function nodePos(idx: number): { x: number; y: number } {

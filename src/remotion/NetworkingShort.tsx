@@ -3,7 +3,6 @@ import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
 import { VideoScript } from "../types";
 import { Background } from "./components/Background";
 import { ConceptScene } from "./scenes/ConceptScene";
-import { OutroScene } from "./scenes/OutroScene";
 
 interface Props { script: VideoScript }
 
@@ -43,13 +42,6 @@ export const NetworkingShort: React.FC<Props> = ({ script }) => {
           duration={sceneDurationFrames}
           sceneIndex={sceneIndex}
           totalScenes={script.scenes.length}
-        />
-      )}
-      {currentScene.type === "outro" && (
-        <OutroScene
-          scene={currentScene}
-          frame={frameInScene}
-          duration={sceneDurationFrames}
         />
       )}
     </AbsoluteFill>

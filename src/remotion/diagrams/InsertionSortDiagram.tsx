@@ -20,10 +20,8 @@ const BAR_W = 90;
 const BAR_GAP = 22;
 const BARS_TOTAL = N * BAR_W + (N - 1) * BAR_GAP;
 const BARS_X0 = (W - BARS_TOTAL) / 2;
-const BASE_Y = 540;
-const MAX_H = 380;
-
-function barH(val: number) { return (val / 100) * MAX_H; }
+const BLOCK_H = 100;
+const BLOCK_Y = 250;
 
 const STEPS = [
   { arr: [20, 50, 80, 30, 100, 40, 70], sortedEnd: 1, current: 2 },
@@ -90,34 +88,27 @@ export const InsertionSortDiagram: React.FC<Props> = ({ frame, duration, keyTerm
 
       {arr.map((val, i) => {
         const bx = BARS_X0 + i * (BAR_W + BAR_GAP);
-        const bh = barH(val);
         const isSorted = doneIn > 0.1 ? true : i < sortedEnd;
         const isCurrent = i === current && doneIn < 0.1;
         const liftY = isCurrent ? liftProgress * 60 : 0;
-        const by = BASE_Y - bh - liftY;
+        const blockTop = BLOCK_Y - liftY;
         const barColor = doneIn > 0.5 ? T.mint : isSorted ? T.mint : isCurrent ? T.amber : T.textDim;
 
         return (
           <g key={i}>
-            {isSorted && doneIn < 0.1 && (
-              <rect x={bx - 4} y={40} width={BAR_W + 8} height={BASE_Y - 40 + 4} rx="8"
-                fill={T.mint} fillOpacity={hiSorted ? 0.12 : 0.06}
-                stroke="none"
-              />
-            )}
-            <rect x={bx} y={by} width={BAR_W} height={bh} rx="6"
+            <rect x={bx} y={blockTop} width={BAR_W} height={BLOCK_H} rx="6"
               fill={barColor}
               fillOpacity={isCurrent ? (hiInsert ? 0.75 : 0.55) : isSorted ? 0.45 : 0.25}
               stroke={barColor}
               strokeWidth={isCurrent ? 2.5 : 1.5}
               filter={isCurrent && hiInsert ? "url(#is-glow-sm)" : isSorted && hiSorted ? "url(#is-glow-sm)" : undefined}
             />
-            <text x={bx + BAR_W / 2} y={by - 10} textAnchor="middle"
+            <text x={bx + BAR_W / 2} y={blockTop + BLOCK_H / 2 + 6} textAnchor="middle"
               fill={barColor} fontFamily={T.mono} fontSize="14" fontWeight="700">
               {val}
             </text>
             {isCurrent && (
-              <text x={bx + BAR_W / 2} y={BASE_Y + 26} textAnchor="middle"
+              <text x={bx + BAR_W / 2} y={BLOCK_Y + BLOCK_H + 24} textAnchor="middle"
                 fill={T.amber} fontFamily={T.sans} fontSize="10" fontWeight="700">
                 INSERT
               </text>
@@ -127,21 +118,21 @@ export const InsertionSortDiagram: React.FC<Props> = ({ frame, duration, keyTerm
       })}
 
       {sortedEnd > 0 && doneIn < 0.1 && (
-        <rect x={BARS_X0 - 6} y={36} width={(sortedEnd) * (BAR_W + BAR_GAP) - BAR_GAP + 12} height={BASE_Y - 36 + 8} rx="10"
+        <rect x={BARS_X0 - 6} y={BLOCK_Y - 8} width={(sortedEnd) * (BAR_W + BAR_GAP) - BAR_GAP + 12} height={BLOCK_H + 16} rx="10"
           fill="none" stroke={T.mint} strokeWidth="1.5" strokeDasharray="8 4"
           opacity={hiSorted ? 0.8 : 0.4}
           filter={hiSorted ? "url(#is-glow-sm)" : undefined}
         />
       )}
 
-      <rect x={W / 2 - 120} y={BASE_Y + 50} width={240} height={38} rx="19"
+      <rect x={W / 2 - 120} y={BLOCK_Y + BLOCK_H + 60} width={240} height={38} rx="19"
         fill={doneIn > 0.5 ? T.mint : T.bgDeep}
         fillOpacity={doneIn > 0.5 ? 0.22 : 0.6}
         stroke={doneIn > 0.5 ? T.mint : T.violet}
         strokeWidth="2"
         filter={doneIn > 0.5 ? "url(#is-glow-sm)" : undefined}
       />
-      <text x={W / 2} y={BASE_Y + 74} textAnchor="middle"
+      <text x={W / 2} y={BLOCK_Y + BLOCK_H + 84} textAnchor="middle"
         fill={doneIn > 0.5 ? T.mint : T.violet}
         fontFamily={T.sans} fontSize="13" fontWeight="700" letterSpacing="1.5">
         {doneIn > 0.5 ? "SORTED" : `INSERTING ${insertNum} / ${N}`}

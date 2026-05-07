@@ -96,7 +96,7 @@ export type DiagramType =
   | "none";
 
 export interface VideoScene {
-  type: "concept" | "outro";
+  type: "concept";
   headline: string;
   subtext?: string;
   voiceover?: string;

@@ -20,21 +20,13 @@ OUTPUT FORMAT — respond ONLY with valid JSON, no markdown, no explanation:
       "diagramType": "handshake|dns|packet|routing|osi|http|firewall|switch|nat|dhcp|arp|vpn|pubkey|tls|proxy|revproxy|cdn|subnet|bgp|none",
       "keyTerms": ["TERM"],
       "duration": 7
-    },
-    {
-      "type": "outro",
-      "headline": "Memorable takeaway (max 50 chars)",
-      "subtext": "One final insight (max 80 chars)",
-      "voiceover": "Closing spoken script — encourage the viewer to follow, subscribe, or share.",
-      "duration": 5
     }
   ]
 }
 
 RULES:
-- First scene: type "concept" — start directly with content, no intro
-- Last scene: type "outro" — strong memorable takeaway
-- 5-7 concept scenes before the outro (enough to fill 60 seconds)
+- All scenes: type "concept" — start directly with content, no intro or outro
+- 6-8 concept scenes (enough to fill 60 seconds)
 - Total duration: 55–65 seconds
 - Tone: Clear, authoritative, educational. No fluff. No metaphors needed.
 - Headlines are SHORT and PUNCHY — like a slide title
@@ -62,8 +54,7 @@ RULES:
   * Pure text/concept → "none"
 - keyTerms: 1-2 exact technical terms to highlight visually (empty array if none)
 - voiceover: Natural spoken audio script for each scene. Conversational, not robotic.
-  * Concept scene: ~20 words per 8 seconds of duration
-  * Outro scene: ~15 words (takeaway + CTA)
+  * ~20 words per 8 seconds of duration
   * Write as if you're speaking directly to camera — no bullet points, no headers
 - Think: what would look great on a clean diagram?`;
 
