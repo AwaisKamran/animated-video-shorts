@@ -2,7 +2,6 @@ import React from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
 import { VideoScript } from "../types";
 import { Background } from "./components/Background";
-import { IntroScene } from "./scenes/IntroScene";
 import { ConceptScene } from "./scenes/ConceptScene";
 import { OutroScene } from "./scenes/OutroScene";
 
@@ -37,14 +36,6 @@ export const NetworkingShort: React.FC<Props> = ({ script }) => {
 
       <Background />
 
-      {currentScene.type === "intro" && (
-        <IntroScene
-          scene={currentScene}
-          script={script}
-          frame={frameInScene}
-          duration={sceneDurationFrames}
-        />
-      )}
       {currentScene.type === "concept" && (
         <ConceptScene
           scene={currentScene}

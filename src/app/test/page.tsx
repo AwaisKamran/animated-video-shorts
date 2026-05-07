@@ -1229,7 +1229,7 @@ const SCENE_CONFIGS: { label: string; description: string; script: VideoScript }
       title: "TCP HANDSHAKE",
       subtitle: "How two computers connect",
       concept: "tcp-handshake",
-      scenes: [{ type: "intro", headline: "TCP HANDSHAKE", duration: 7 }],
+      scenes: [{ type: "outro", headline: "TCP HANDSHAKE", duration: 7 }],
     },
   },
   {

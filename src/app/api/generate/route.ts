@@ -13,11 +13,6 @@ OUTPUT FORMAT — respond ONLY with valid JSON, no markdown, no explanation:
   "concept": "kebab-case-slug",
   "scenes": [
     {
-      "type": "intro",
-      "headline": "Title text shown large on screen",
-      "duration": 5
-    },
-    {
       "type": "concept",
       "headline": "Short, punchy insight (max 60 chars)",
       "subtext": "One sentence detail or context (max 100 chars)",
@@ -37,9 +32,9 @@ OUTPUT FORMAT — respond ONLY with valid JSON, no markdown, no explanation:
 }
 
 RULES:
-- First scene: type "intro" — headline is the topic title
+- First scene: type "concept" — start directly with content, no intro
 - Last scene: type "outro" — strong memorable takeaway
-- 5-7 concept scenes between them (enough to fill 60 seconds)
+- 5-7 concept scenes before the outro (enough to fill 60 seconds)
 - Total duration: 55–65 seconds
 - Tone: Clear, authoritative, educational. No fluff. No metaphors needed.
 - Headlines are SHORT and PUNCHY — like a slide title
@@ -67,7 +62,6 @@ RULES:
   * Pure text/concept → "none"
 - keyTerms: 1-2 exact technical terms to highlight visually (empty array if none)
 - voiceover: Natural spoken audio script for each scene. Conversational, not robotic.
-  * Intro scene: ~15 words (hook + topic intro)
   * Concept scene: ~20 words per 8 seconds of duration
   * Outro scene: ~15 words (takeaway + CTA)
   * Write as if you're speaking directly to camera — no bullet points, no headers
