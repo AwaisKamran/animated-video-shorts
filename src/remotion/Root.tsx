@@ -1,7 +1,8 @@
 import React from "react";
 import { Composition } from "remotion";
 import { NetworkingShort } from "./NetworkingShort";
-import { VideoScript } from "../types";
+import { DiagramPreview } from "./DiagramPreview";
+import { VideoScript, DiagramType } from "../types";
 
 interface Props { script: VideoScript }
 
@@ -77,18 +78,29 @@ export const RemotionRoot: React.FC = () => {
   const Comp = NetworkingShort as any;
 
   return (
-    <Composition
-      id="NetworkingShort"
-      component={Comp}
-      durationInFrames={totalFrames}
-      fps={fps}
-      width={1080}
-      height={1920}
-      defaultProps={{ script: DEFAULT_SCRIPT }}
-      calculateMetadata={async ({ props }: { props: Record<string, unknown> }) => {
-        const s = props.script as VideoScript;
-        return { durationInFrames: getTotalFrames(s, fps) };
-      }}
-    />
+    <>
+      <Composition
+        id="NetworkingShort"
+        component={Comp}
+        durationInFrames={totalFrames}
+        fps={fps}
+        width={1080}
+        height={1920}
+        defaultProps={{ script: DEFAULT_SCRIPT }}
+        calculateMetadata={async ({ props }: { props: Record<string, unknown> }) => {
+          const s = props.script as VideoScript;
+          return { durationInFrames: getTotalFrames(s, fps) };
+        }}
+      />
+      <Composition
+        id="DiagramPreview"
+        component={DiagramPreview as any}
+        durationInFrames={240}
+        fps={30}
+        width={1080}
+        height={700}
+        defaultProps={{ diagramType: "handshake" as DiagramType, keyTerms: [] as string[] }}
+      />
+    </>
   );
 };

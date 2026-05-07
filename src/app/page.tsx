@@ -36,9 +36,7 @@ const DIAGRAM_COLORS: Record<string, string> = {
 function SceneRow({ scene, index }: { scene: VideoScript["scenes"][0]; index: number }) {
   const accent = DIAGRAM_COLORS[scene.diagramType ?? "none"] ?? "#5E5E5E";
   const typeColors: Record<string, string> = {
-    intro:   "#5E5E5E",
     concept: accent,
-    outro:   "#5E5E5E",
   };
 
   return (
@@ -126,6 +124,7 @@ export default function Home() {
   const [script, setScript] = useState<VideoScript | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [downloading, setDownloading] = useState(false);
   const playerRef = useRef(null);
 
   const generate = useCallback(async () => {
@@ -152,6 +151,49 @@ export default function Home() {
     }
   }, [topic]);
 
+  const totalFrames = script
+    ? script.scenes.reduce((a, s) => a + s.duration * 30, 0)
+    : 990;
+  const totalSecs = script
+    ? script.scenes.reduce((a, s) => a + s.duration, 0)
+    : 0;
+
+  const downloadVideo = useCallback(async () => {
+    if (!script) return;
+    setDownloading(true);
+    try {
+      const res = await fetch("/api/render", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          compositionId: "NetworkingShort",
+          inputProps: { script },
+          durationInFrames: totalFrames,
+          fps: 30,
+          width: 1080,
+          height: 1920,
+        }),
+      });
+      if (!res.ok) {
+        const d = await res.json();
+        throw new Error(d.error || "Render failed");
+      }
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${script.concept || "video"}.mp4`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error("Download failed:", err);
+    } finally {
+      setDownloading(false);
+    }
+  }, [script, totalFrames]);
+
   const copyCmd = useCallback(() => {
     if (!script) return;
     const propsJson = JSON.stringify({ script }).replace(/'/g, "'\\''");
@@ -161,13 +203,6 @@ export default function Home() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   }, [script]);
-
-  const totalFrames = script
-    ? script.scenes.reduce((a, s) => a + s.duration * 30, 0)
-    : 990;
-  const totalSecs = script
-    ? script.scenes.reduce((a, s) => a + s.duration, 0)
-    : 0;
 
   return (
     <main style={{ minHeight: "100vh", background: "var(--bg)" }}>
@@ -293,7 +328,7 @@ export default function Home() {
             <div>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
                 <div style={{ fontSize: 11, fontWeight: 600, color: "var(--text-3)", letterSpacing: 2 }}>
-                  SCRIPT — {script.scenes.length} SCENES · {totalSecs}s
+                  SCRIPT — {script.scenes.filter(s => s.type === "concept").length} SCENES · {totalSecs}s
                 </div>
                 <div style={{ display: "flex", gap: 8 }}>
                   <button className="btn btn-ghost" onClick={copyCmd}
@@ -308,7 +343,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="card" style={{ padding: "8px 20px" }}>
-                {script.scenes.map((scene, i) => (
+                {script.scenes.filter(s => s.type === "concept").map((scene, i) => (
                   <SceneRow key={i} scene={scene} index={i} />
                 ))}
               </div>
@@ -394,6 +429,47 @@ export default function Home() {
               </div>
             )}
           </div>
+
+          {script && (
+            <button
+              onClick={downloadVideo}
+              disabled={downloading}
+              style={{
+                width: "100%",
+                padding: "11px 0",
+                borderRadius: 10,
+                border: "1px solid rgba(255,255,255,0.12)",
+                background: downloading ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.06)",
+                color: downloading ? "var(--text-3)" : "var(--text)",
+                fontSize: 13,
+                fontWeight: 600,
+                fontFamily: "var(--sans)",
+                cursor: downloading ? "not-allowed" : "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 8,
+                letterSpacing: 0.3,
+                transition: "all 0.15s",
+              }}
+            >
+              {downloading ? (
+                <>
+                  <div className="spinner" />
+                  Rendering…
+                </>
+              ) : (
+                <>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 3v13M12 16l-4-4m4 4l4-4M3 19h18"
+                      stroke="currentColor" strokeWidth="2"
+                      strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  Download MP4
+                </>
+              )}
+            </button>
+          )}
 
           {script && (
             <div style={{ fontSize: 11, color: "var(--text-3)", textAlign: "center", lineHeight: 1.8 }}>

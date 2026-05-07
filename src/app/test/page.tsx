@@ -778,6 +778,102 @@ const AGENT_FOUNDATIONS_CONFIGS = [
       { label: "OBSERVATION", keyTerms: ["OBSERVATION"] },
     ],
   },
+  {
+    type: "agentvschat" as DiagramType,
+    name: "Agent vs Chatbot vs LLM",
+    description: "Three-way comparison · what makes each different",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "LLM", keyTerms: ["LLM"] },
+      { label: "CHATBOT", keyTerms: ["CHATBOT"] },
+      { label: "AGENT", keyTerms: ["AGENT"] },
+    ],
+  },
+  {
+    type: "agentexamples" as DiagramType,
+    name: "Agents in Production",
+    description: "Claude Code · Cursor · AutoGPT · Devin",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "CODING", keyTerms: ["CODING"] },
+      { label: "BROWSING", keyTerms: ["BROWSING"] },
+      { label: "RESEARCH", keyTerms: ["RESEARCH"] },
+    ],
+  },
+  {
+    type: "agentfail" as DiagramType,
+    name: "Agent Failure Modes",
+    description: "Infinite loops · hallucinated tools · drift · lost context",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "INFINITE LOOP", keyTerms: ["INFINITE LOOP"] },
+      { label: "HALLUCINATION", keyTerms: ["HALLUCINATION"] },
+      { label: "DRIFT", keyTerms: ["DRIFT"] },
+    ],
+  },
+  {
+    type: "controlflex" as DiagramType,
+    name: "Control vs Flexibility",
+    description: "2D axis · scripts vs workflows vs agents · tradeoff",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "CONTROL", keyTerms: ["CONTROL"] },
+      { label: "FLEXIBILITY", keyTerms: ["FLEXIBILITY"] },
+    ],
+  },
+  {
+    type: "hybridpipe" as DiagramType,
+    name: "Hybrid Workflow + Agent",
+    description: "Fixed steps surround a flexible agent block",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "HYBRID", keyTerms: ["HYBRID"] },
+      { label: "WORKFLOW", keyTerms: ["WORKFLOW"] },
+      { label: "AGENT", keyTerms: ["AGENT"] },
+    ],
+  },
+  {
+    type: "thoughtzoom" as DiagramType,
+    name: "Inside the Thought",
+    description: "Zoomed view of ReAct's reasoning step · plan emerging line by line",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "THOUGHT", keyTerms: ["THOUGHT"] },
+      { label: "REASONING", keyTerms: ["REASONING"] },
+    ],
+  },
+  {
+    type: "actionzoom" as DiagramType,
+    name: "Inside the Action",
+    description: "Zoomed view of ReAct's action step · structured JSON tool call",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "ACTION", keyTerms: ["ACTION"] },
+      { label: "JSON", keyTerms: ["JSON"] },
+      { label: "TOOL CALL", keyTerms: ["TOOL CALL"] },
+    ],
+  },
+  {
+    type: "obszoom" as DiagramType,
+    name: "Inside the Observation",
+    description: "Zoomed view of ReAct's observation step · result fed back to context",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "OBSERVATION", keyTerms: ["OBSERVATION"] },
+      { label: "RESULT", keyTerms: ["RESULT"] },
+    ],
+  },
+  {
+    type: "reactvscot" as DiagramType,
+    name: "ReAct vs Chain of Thought",
+    description: "Reasoning + acting vs reasoning only · environment loop",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "COT", keyTerms: ["COT"] },
+      { label: "REACT", keyTerms: ["REACT"] },
+      { label: "ACTION", keyTerms: ["ACTION"] },
+    ],
+  },
 ];
 
 const AGENT_TOOLUSE_CONFIGS = [
@@ -808,6 +904,69 @@ const AGENT_TOOLUSE_CONFIGS = [
       { label: "Default", keyTerms: [] as string[] },
       { label: "SCHEMA", keyTerms: ["SCHEMA"] },
       { label: "PARAMETERS", keyTerms: ["PARAMETERS"] },
+    ],
+  },
+  {
+    type: "toolretry" as DiagramType,
+    name: "Tool Retry / Backoff",
+    description: "Failure → exponential backoff → retry → success",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "RETRY", keyTerms: ["RETRY"] },
+      { label: "BACKOFF", keyTerms: ["BACKOFF"] },
+      { label: "ERROR", keyTerms: ["ERROR"] },
+    ],
+  },
+  {
+    type: "toolrouter" as DiagramType,
+    name: "Tool Selection / Routing",
+    description: "LLM picks the right tool from many options",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "SELECTION", keyTerms: ["SELECTION"] },
+      { label: "ROUTING", keyTerms: ["ROUTING"] },
+    ],
+  },
+  {
+    type: "seqvspara" as DiagramType,
+    name: "Sequential vs Parallel",
+    description: "Timeline comparison · 4× faster with parallel calls",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "SEQUENTIAL", keyTerms: ["SEQUENTIAL"] },
+      { label: "PARALLEL", keyTerms: ["PARALLEL"] },
+    ],
+  },
+  {
+    type: "latencybars" as DiagramType,
+    name: "Latency Comparison",
+    description: "Sequential vs Parallel vs Cached · 10× speedup",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "LATENCY", keyTerms: ["LATENCY"] },
+      { label: "SPEEDUP", keyTerms: ["SPEEDUP"] },
+    ],
+  },
+  {
+    type: "paramtypes" as DiagramType,
+    name: "Schema Parameter Types",
+    description: "string · number · boolean · enum · array · required vs optional",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "STRING", keyTerms: ["STRING"] },
+      { label: "NUMBER", keyTerms: ["NUMBER"] },
+      { label: "ENUM", keyTerms: ["ENUM"] },
+      { label: "REQUIRED", keyTerms: ["REQUIRED"] },
+    ],
+  },
+  {
+    type: "schemaquality" as DiagramType,
+    name: "Schema Quality vs Accuracy",
+    description: "Vague (60%) vs specific (95%) schemas · description matters",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "SCHEMA", keyTerms: ["SCHEMA"] },
+      { label: "ACCURACY", keyTerms: ["ACCURACY"] },
     ],
   },
 ];
@@ -858,6 +1017,123 @@ const AGENT_MEMORY_CONFIGS = [
       { label: "SUMMARIZE", keyTerms: ["SUMMARIZE"] },
     ],
   },
+  {
+    type: "hallucination" as DiagramType,
+    name: "Hallucination Without Grounding",
+    description: "LLM fabricates confident-but-wrong answer · vs RAG-grounded",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "HALLUCINATION", keyTerms: ["HALLUCINATION"] },
+      { label: "GROUNDING", keyTerms: ["GROUNDING"] },
+    ],
+  },
+  {
+    type: "chunking" as DiagramType,
+    name: "Chunking Strategies",
+    description: "Fixed-size · sentence · semantic — three ways to split docs",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "CHUNK", keyTerms: ["CHUNK"] },
+      { label: "SEMANTIC", keyTerms: ["SEMANTIC"] },
+      { label: "FIXED-SIZE", keyTerms: ["FIXED-SIZE"] },
+    ],
+  },
+  {
+    type: "reranking" as DiagramType,
+    name: "Reranking Top-K Results",
+    description: "Vector search top-10 → reranker → top-3 reordered",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "RERANK", keyTerms: ["RERANK"] },
+      { label: "TOP-K", keyTerms: ["TOP-K"] },
+    ],
+  },
+  {
+    type: "cosine" as DiagramType,
+    name: "Cosine Similarity",
+    description: "Angle θ between vectors · cos(θ) = a·b / |a||b|",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "COSINE", keyTerms: ["COSINE"] },
+      { label: "SIMILARITY", keyTerms: ["SIMILARITY"] },
+      { label: "ANGLE", keyTerms: ["ANGLE"] },
+    ],
+  },
+  {
+    type: "topk" as DiagramType,
+    name: "Top-K Nearest Neighbors",
+    description: "Query vector + expanding circle captures K=5 nearest",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "TOP-K", keyTerms: ["TOP-K"] },
+      { label: "NEAREST", keyTerms: ["NEAREST"] },
+      { label: "K=5", keyTerms: ["K=5"] },
+    ],
+  },
+  {
+    type: "vectorindex" as DiagramType,
+    name: "Vector Index Types",
+    description: "Flat O(N) · IVF O(√N) · HNSW O(log N) — search structures",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "FLAT", keyTerms: ["FLAT"] },
+      { label: "IVF", keyTerms: ["IVF"] },
+      { label: "HNSW", keyTerms: ["HNSW"] },
+    ],
+  },
+  {
+    type: "memeviction" as DiagramType,
+    name: "Memory Eviction (LRU/LFU)",
+    description: "Bank fills → new memory arrives → policy evicts oldest/least-used",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "LRU", keyTerms: ["LRU"] },
+      { label: "LFU", keyTerms: ["LFU"] },
+      { label: "EVICTION", keyTerms: ["EVICTION"] },
+    ],
+  },
+  {
+    type: "memoryrw" as DiagramType,
+    name: "Memory Read / Write",
+    description: "Bidirectional store · payload writes · query reads",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "WRITE", keyTerms: ["WRITE"] },
+      { label: "READ", keyTerms: ["READ"] },
+      { label: "RECALL", keyTerms: ["RECALL"] },
+    ],
+  },
+  {
+    type: "slidingwin" as DiagramType,
+    name: "Sliding Window",
+    description: "Fixed-size window slides over message history · old messages drop",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "SLIDING WINDOW", keyTerms: ["SLIDING WINDOW"] },
+      { label: "OLDEST", keyTerms: ["OLDEST"] },
+      { label: "NEWEST", keyTerms: ["NEWEST"] },
+    ],
+  },
+  {
+    type: "summarize" as DiagramType,
+    name: "Conversation Summarization",
+    description: "10 messages → summary block · 5000 → 800 tokens · 84% saved",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "SUMMARIZE", keyTerms: ["SUMMARIZE"] },
+      { label: "TOKENS", keyTerms: ["TOKENS"] },
+    ],
+  },
+  {
+    type: "truncation" as DiagramType,
+    name: "Context Truncation",
+    description: "Token budget exceeded → oldest history chopped to fit limit",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "TRUNCATE", keyTerms: ["TRUNCATE"] },
+      { label: "LIMIT", keyTerms: ["LIMIT"] },
+    ],
+  },
 ];
 
 const AGENT_REASONING_CONFIGS = [
@@ -891,6 +1167,76 @@ const AGENT_REASONING_CONFIGS = [
       { label: "CRITIQUE", keyTerms: ["CRITIQUE"] },
       { label: "REVISE", keyTerms: ["REVISE"] },
       { label: "ITERATION", keyTerms: ["ITERATION"] },
+    ],
+  },
+  {
+    type: "cotvsdirect" as DiagramType,
+    name: "CoT vs Direct Answer",
+    description: "Direct (wrong) vs step-by-step CoT (right) · same question",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "DIRECT", keyTerms: ["DIRECT"] },
+      { label: "COT", keyTerms: ["COT"] },
+    ],
+  },
+  {
+    type: "fewvszero" as DiagramType,
+    name: "Zero-shot vs Few-shot",
+    description: "Just the task vs 3 example pairs · examples condition the model",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "ZERO-SHOT", keyTerms: ["ZERO-SHOT"] },
+      { label: "FEW-SHOT", keyTerms: ["FEW-SHOT"] },
+    ],
+  },
+  {
+    type: "linearvstree" as DiagramType,
+    name: "Linear Chain vs Tree",
+    description: "CoT commits to one path · ToT explores many",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "LINEAR", keyTerms: ["LINEAR"] },
+      { label: "TREE", keyTerms: ["TREE"] },
+    ],
+  },
+  {
+    type: "totscoring" as DiagramType,
+    name: "Tree of Thoughts Scoring",
+    description: "Each branch evaluated · best path glows mint",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "SCORE", keyTerms: ["SCORE"] },
+      { label: "EVALUATE", keyTerms: ["EVALUATE"] },
+    ],
+  },
+  {
+    type: "totpruning" as DiagramType,
+    name: "Tree of Thoughts Pruning",
+    description: "Low-score branches marked → fade out · viable paths remain",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "PRUNE", keyTerms: ["PRUNE"] },
+      { label: "DEAD END", keyTerms: ["DEAD END"] },
+    ],
+  },
+  {
+    type: "criticprompt" as DiagramType,
+    name: "Critic Prompt Pattern",
+    description: "Writer prompt → output → critic prompt → critique → loop",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "CRITIC", keyTerms: ["CRITIC"] },
+      { label: "PROMPT", keyTerms: ["PROMPT"] },
+    ],
+  },
+  {
+    type: "selfconsist" as DiagramType,
+    name: "Self-Consistency",
+    description: "5 parallel CoT runs → majority vote → most-frequent answer wins",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "CONSISTENCY", keyTerms: ["CONSISTENCY"] },
+      { label: "VOTE", keyTerms: ["VOTE"] },
     ],
   },
 ];
@@ -940,6 +1286,81 @@ const AGENT_ARCH_CONFIGS = [
       { label: "DYNAMIC", keyTerms: ["DYNAMIC"] },
     ],
   },
+  {
+    type: "msgbus" as DiagramType,
+    name: "Message Bus / Pub-Sub",
+    description: "Central bus · publishers and subscribers · packets travel",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "MESSAGE BUS", keyTerms: ["MESSAGE BUS"] },
+      { label: "PUB/SUB", keyTerms: ["PUB/SUB"] },
+    ],
+  },
+  {
+    type: "sharedstate" as DiagramType,
+    name: "Shared State Store",
+    description: "Multiple agents · key-value reads & writes · conflict avoidance",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "SHARED STATE", keyTerms: ["SHARED STATE"] },
+      { label: "READ", keyTerms: ["READ"] },
+      { label: "WRITE", keyTerms: ["WRITE"] },
+    ],
+  },
+  {
+    type: "conflictres" as DiagramType,
+    name: "Conflict Resolution",
+    description: "Two agents disagree · resolver scores both · winner picked",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "CONFLICT", keyTerms: ["CONFLICT"] },
+      { label: "RESOLVE", keyTerms: ["RESOLVE"] },
+    ],
+  },
+  {
+    type: "superretry" as DiagramType,
+    name: "Supervisor Retry on Failure",
+    description: "Worker fails → supervisor reassigns to backup → success",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "SUPERVISOR", keyTerms: ["SUPERVISOR"] },
+      { label: "RETRY", keyTerms: ["RETRY"] },
+      { label: "FAILURE", keyTerms: ["FAILURE"] },
+    ],
+  },
+  {
+    type: "intentclf" as DiagramType,
+    name: "Intent Classification",
+    description: "User message → classifier → confidence bars → route to handler",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "INTENT", keyTerms: ["INTENT"] },
+      { label: "CLASSIFY", keyTerms: ["CLASSIFY"] },
+      { label: "CONFIDENCE", keyTerms: ["CONFIDENCE"] },
+    ],
+  },
+  {
+    type: "contexthand" as DiagramType,
+    name: "Context Preservation in Handoff",
+    description: "Triage hands off + carries context bag (history, prefs, intent)",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "CONTEXT", keyTerms: ["CONTEXT"] },
+      { label: "HANDOFF", keyTerms: ["HANDOFF"] },
+      { label: "PRESERVE", keyTerms: ["PRESERVE"] },
+    ],
+  },
+  {
+    type: "planrevise" as DiagramType,
+    name: "Plan Revision",
+    description: "Step fails → orchestrator revises plan · new step inserted",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "PLAN", keyTerms: ["PLAN"] },
+      { label: "REVISE", keyTerms: ["REVISE"] },
+      { label: "ADAPT", keyTerms: ["ADAPT"] },
+    ],
+  },
 ];
 
 const AGENT_SAFETY_CONFIGS = [
@@ -952,6 +1373,37 @@ const AGENT_SAFETY_CONFIGS = [
       { label: "PROMPT INJECTION", keyTerms: ["PROMPT INJECTION"] },
       { label: "GUARDRAIL", keyTerms: ["GUARDRAIL"] },
       { label: "FILTER", keyTerms: ["FILTER"] },
+    ],
+  },
+  {
+    type: "injectattack" as DiagramType,
+    name: "Prompt Injection Attack",
+    description: "Malicious payload + shield blocks attack · clean prompt passes",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "INJECTION", keyTerms: ["INJECTION"] },
+      { label: "ATTACK", keyTerms: ["ATTACK"] },
+      { label: "SHIELD", keyTerms: ["SHIELD"] },
+    ],
+  },
+  {
+    type: "piidetect" as DiagramType,
+    name: "PII Detection & Redaction",
+    description: "Scanner sweeps · email/phone/SSN tagged → [REDACTED]",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "PII", keyTerms: ["PII"] },
+      { label: "REDACT", keyTerms: ["REDACT"] },
+    ],
+  },
+  {
+    type: "sandbox" as DiagramType,
+    name: "Agent Sandbox / Isolation",
+    description: "Sealed boundary · allowed resources vs blocked actions",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "SANDBOX", keyTerms: ["SANDBOX"] },
+      { label: "ISOLATION", keyTerms: ["ISOLATION"] },
     ],
   },
 ];
@@ -1210,6 +1662,55 @@ const DIAGRAM_COLORS: Record<string, string> = {
   casecomplexity: "#F5A623",
   mastertheorem:  "#A78BFA",
   amortized:      "#00D4A0",
+  // Agentic AI — Foundations (extended)
+  agentvschat:    "#7B5EF8",
+  agentexamples:  "#F5A623",
+  agentfail:      "#F5506B",
+  controlflex:    "#00C8E6",
+  hybridpipe:     "#A78BFA",
+  thoughtzoom:    "#7B5EF8",
+  actionzoom:     "#F5A623",
+  obszoom:        "#00D4A0",
+  reactvscot:     "#A78BFA",
+  // Agentic AI — Tool Use (extended)
+  toolretry:      "#F5506B",
+  toolrouter:     "#7B5EF8",
+  seqvspara:      "#00C8E6",
+  latencybars:    "#00D4A0",
+  paramtypes:     "#F5A623",
+  schemaquality:  "#A78BFA",
+  // Agentic AI — Memory & Context (extended)
+  hallucination:  "#F5506B",
+  chunking:       "#00C8E6",
+  reranking:      "#7B5EF8",
+  cosine:         "#A78BFA",
+  topk:           "#00D4A0",
+  vectorindex:    "#F5A623",
+  memeviction:    "#F5506B",
+  memoryrw:       "#00C8E6",
+  slidingwin:     "#A78BFA",
+  summarize:      "#00D4A0",
+  truncation:     "#F5A623",
+  // Agentic AI — Reasoning (extended)
+  cotvsdirect:    "#7B5EF8",
+  fewvszero:      "#A78BFA",
+  linearvstree:   "#00D4A0",
+  totscoring:     "#F5A623",
+  totpruning:     "#F5506B",
+  criticprompt:   "#00C8E6",
+  selfconsist:    "#A78BFA",
+  // Agentic AI — Architectures (extended)
+  msgbus:         "#A78BFA",
+  sharedstate:    "#00C8E6",
+  conflictres:    "#F5506B",
+  superretry:     "#F5A623",
+  intentclf:      "#7B5EF8",
+  contexthand:    "#00D4A0",
+  planrevise:     "#A78BFA",
+  // Agentic AI — Safety (extended)
+  injectattack:   "#F5506B",
+  piidetect:      "#F5A623",
+  sandbox:        "#00D4A0",
   // Algorithm Analysis — Sorting
   bubblesort:     "#00C8E6",
   insertionsort:  "#A78BFA",
@@ -1222,16 +1723,6 @@ const DIAGRAM_COLORS: Record<string, string> = {
 };
 
 const SCENE_CONFIGS: { label: string; description: string; script: VideoScript }[] = [
-  {
-    label: "Intro",
-    description: "Title card + ring animation",
-    script: {
-      title: "TCP HANDSHAKE",
-      subtitle: "How two computers connect",
-      concept: "tcp-handshake",
-      scenes: [{ type: "outro", headline: "TCP HANDSHAKE", duration: 7 }],
-    },
-  },
   {
     label: "Concept — Handshake",
     description: "SYN-ACK highlighted",
@@ -1289,23 +1780,6 @@ const SCENE_CONFIGS: { label: string; description: string; script: VideoScript }
       ],
     },
   },
-  {
-    label: "Outro",
-    description: "CTA + takeaway animation",
-    script: {
-      title: "TCP HANDSHAKE",
-      subtitle: "...",
-      concept: "tcp-handshake",
-      scenes: [
-        {
-          type: "outro",
-          headline: "3 packets. 1 connection.",
-          subtext: "Every TCP connection starts with this exchange.",
-          duration: 7,
-        },
-      ],
-    },
-  },
 ];
 
 const DURATION_OPTIONS = [
@@ -1318,19 +1792,85 @@ const DURATION_OPTIONS = [
 // DiagramCard
 // ---------------------------------------------------------------------------
 
+type Orientation = "landscape" | "portrait";
+
 interface DiagramCardProps {
   type: DiagramType;
   name: string;
   description: string;
   testCases: { label: string; keyTerms: string[] }[];
   durationSecs: number;
+  orientation: Orientation;
 }
 
-function DiagramCard({ type, name, description, testCases, durationSecs }: DiagramCardProps) {
+function DiagramCard({ type, name, description, testCases, durationSecs, orientation }: DiagramCardProps) {
   const [selectedCase, setSelectedCase] = useState(0);
+  const [downloading, setDownloading] = useState(false);
   const accent = DIAGRAM_COLORS[type] ?? "#00C8E6";
   const activeCase = testCases[selectedCase];
   const durationInFrames = durationSecs * 30;
+
+  const isPortrait = orientation === "portrait";
+  const compWidth  = 1080;
+  const compHeight = isPortrait ? 1920 : 700;
+
+  const portraitScript: VideoScript = {
+    title: name,
+    subtitle: description,
+    concept: type,
+    scenes: [{
+      type: "concept",
+      headline: name,
+      subtext: description,
+      diagramType: type,
+      keyTerms: activeCase.keyTerms,
+      duration: durationSecs,
+    }],
+  };
+
+  const handleDownload = async () => {
+    setDownloading(true);
+    try {
+      const res = await fetch("/api/render", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(isPortrait
+          ? {
+              compositionId: "NetworkingShort",
+              inputProps: { script: portraitScript },
+              durationInFrames,
+              fps: 30,
+              width: 1080,
+              height: 1920,
+            }
+          : {
+              compositionId: "DiagramPreview",
+              inputProps: { diagramType: type, keyTerms: activeCase.keyTerms },
+              durationInFrames,
+              fps: 30,
+              width: 1080,
+              height: 700,
+            }
+        ),
+      });
+      if (!res.ok) throw new Error("Render failed");
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${type}-${activeCase.label.toLowerCase().replace(/\s+/g, "-")}.mp4`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error("Download failed:", err);
+    } finally {
+      setDownloading(false);
+    }
+  };
+
+  const aspectRatio = isPortrait ? "9/16" : "1080/700";
 
   return (
     <div style={{
@@ -1339,13 +1879,47 @@ function DiagramCard({ type, name, description, testCases, durationSecs }: Diagr
       gap: 12,
     }}>
       {/* Header */}
-      <div>
-        <div style={{ fontSize: 18, fontWeight: 600, color: "var(--text)", marginBottom: 4 }}>
-          {name}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+        <div>
+          <div style={{ fontSize: isPortrait ? 14 : 18, fontWeight: 600, color: "var(--text)", marginBottom: 4 }}>
+            {name}
+          </div>
+          <div style={{ fontSize: 11, color: "var(--text-2)", lineHeight: 1.4 }}>
+            {description}
+          </div>
         </div>
-        <div style={{ fontSize: 12, color: "var(--text-2)" }}>
-          {description}
-        </div>
+        <button
+          onClick={handleDownload}
+          disabled={downloading}
+          title="Download MP4"
+          style={{
+            flexShrink: 0,
+            marginLeft: 10,
+            padding: "6px 8px",
+            borderRadius: 7,
+            border: "1px solid var(--border)",
+            background: "transparent",
+            color: downloading ? "var(--text-3)" : "var(--text-2)",
+            cursor: downloading ? "not-allowed" : "pointer",
+            display: "flex",
+            alignItems: "center",
+            gap: 5,
+            fontSize: 11,
+            fontFamily: "var(--sans)",
+            fontWeight: 500,
+            transition: "all 0.15s",
+          }}
+        >
+          {downloading ? (
+            <div className="spinner" style={{ width: 12, height: 12 }} />
+          ) : (
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+              <path d="M12 3v13M12 16l-4-4m4 4l4-4M3 19h18"
+                stroke="currentColor" strokeWidth="2"
+                strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          )}
+        </button>
       </div>
 
       {/* Player */}
@@ -1354,19 +1928,22 @@ function DiagramCard({ type, name, description, testCases, durationSecs }: Diagr
         borderRadius: 10,
         overflow: "hidden",
         background: "#505050",
-        aspectRatio: "1080/700",
+        aspectRatio,
         width: "100%",
       }}>
         <Player
-          key={`${type}-${durationSecs}-${selectedCase}`}
+          key={`${type}-${durationSecs}-${selectedCase}-${orientation}`}
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          component={DiagramPreviewComp as any}
-          inputProps={{ diagramType: type, keyTerms: activeCase.keyTerms }}
+          component={(isPortrait ? NetworkingShortComp : DiagramPreviewComp) as any}
+          inputProps={isPortrait
+            ? { script: portraitScript }
+            : { diagramType: type, keyTerms: activeCase.keyTerms }
+          }
           durationInFrames={durationInFrames}
-          compositionWidth={1080}
-          compositionHeight={700}
+          compositionWidth={compWidth}
+          compositionHeight={compHeight}
           fps={30}
-          style={{ width: "100%", aspectRatio: "1080/700" }}
+          style={{ width: "100%", aspectRatio }}
           controls
           loop
           autoPlay
@@ -1533,11 +2110,16 @@ export default function TestPage() {
   const [agentDuration, setAgentDuration] = useState(8);
   const [algoDuration, setAlgoDuration] = useState(8);
   const [subject, setSubject] = useState<SubjectFilter>("all");
+  const [orientation, setOrientation] = useState<Orientation>("landscape");
 
   const showNet        = subject === "all" || subject === "networking";
   const showMl         = subject === "all" || subject === "ml";
   const showAgentic    = subject === "all" || subject === "agentic";
   const showAlgorithms = subject === "all" || subject === "algorithms";
+
+  const isPortrait = orientation === "portrait";
+  const gridCols   = isPortrait ? "repeat(4, 1fr)" : "repeat(2, 1fr)";
+  const gridGap    = isPortrait ? 24 : 40;
 
   return (
     <main style={{ minHeight: "100vh", background: "var(--bg)" }}>
@@ -1627,6 +2209,49 @@ export default function TestPage() {
               </button>
             );
           })}
+
+          {/* Orientation toggle */}
+          <div style={{ marginLeft: "auto", display: "flex", gap: 6, alignItems: "center" }}>
+            <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1.5, color: "var(--text-3)" }}>
+              VIEW
+            </span>
+            {(["landscape", "portrait"] as Orientation[]).map(mode => {
+              const isActive = orientation === mode;
+              return (
+                <button
+                  key={mode}
+                  onClick={() => setOrientation(mode)}
+                  title={mode === "landscape" ? "Diagram only (16:9)" : "Full short (9:16)"}
+                  style={{
+                    padding: "6px 12px",
+                    borderRadius: 100,
+                    fontSize: 11,
+                    fontWeight: 600,
+                    cursor: "pointer",
+                    fontFamily: "var(--sans)",
+                    border: isActive ? "1px solid var(--text)" : "1px solid var(--border)",
+                    background: isActive ? "rgba(255,255,255,0.08)" : "transparent",
+                    color: isActive ? "var(--text)" : "var(--text-3)",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 6,
+                    transition: "all 0.15s",
+                  }}
+                >
+                  {mode === "landscape" ? (
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+                      <rect x="0.5" y="0.5" width="13" height="9" rx="1.5" stroke="currentColor" />
+                    </svg>
+                  ) : (
+                    <svg width="8" height="13" viewBox="0 0 8 13" fill="none">
+                      <rect x="0.5" y="0.5" width="7" height="12" rx="1.5" stroke="currentColor" />
+                    </svg>
+                  )}
+                  {mode.charAt(0).toUpperCase() + mode.slice(1)}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* ---------------------------------------------------------------- */}
@@ -1659,8 +2284,8 @@ export default function TestPage() {
           {/* 2-column grid */}
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: 40,
+            gridTemplateColumns: gridCols,
+            gap: gridGap,
           }}>
             {NETWORKING_CONFIGS.map(cfg => (
               <DiagramCard
@@ -1670,6 +2295,7 @@ export default function TestPage() {
                 description={cfg.description}
                 testCases={cfg.testCases}
                 durationSecs={netDuration}
+                orientation={orientation}
               />
             ))}
           </div>
@@ -1725,8 +2351,8 @@ export default function TestPage() {
 
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: 40,
+            gridTemplateColumns: gridCols,
+            gap: gridGap,
           }}>
             {ML_FOUNDATIONS_CONFIGS.map(cfg => (
               <DiagramCard
@@ -1736,6 +2362,7 @@ export default function TestPage() {
                 description={cfg.description}
                 testCases={cfg.testCases}
                 durationSecs={mlDuration}
+                orientation={orientation}
               />
             ))}
           </div>
@@ -1762,8 +2389,8 @@ export default function TestPage() {
 
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: 40,
+            gridTemplateColumns: gridCols,
+            gap: gridGap,
           }}>
             {ML_CORE_CONFIGS.map(cfg => (
               <DiagramCard
@@ -1773,6 +2400,7 @@ export default function TestPage() {
                 description={cfg.description}
                 testCases={cfg.testCases}
                 durationSecs={mlDuration}
+                orientation={orientation}
               />
             ))}
           </div>
@@ -1799,8 +2427,8 @@ export default function TestPage() {
 
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: 40,
+            gridTemplateColumns: gridCols,
+            gap: gridGap,
           }}>
             {ML_SUPERVISED_CONFIGS.map(cfg => (
               <DiagramCard
@@ -1810,6 +2438,7 @@ export default function TestPage() {
                 description={cfg.description}
                 testCases={cfg.testCases}
                 durationSecs={mlDuration}
+                orientation={orientation}
               />
             ))}
           </div>
@@ -1836,8 +2465,8 @@ export default function TestPage() {
 
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: 40,
+            gridTemplateColumns: gridCols,
+            gap: gridGap,
           }}>
             {[...ML_OPTIMIZATION_CONFIGS, ...ML_LOSS_CONFIGS].map(cfg => (
               <DiagramCard
@@ -1847,6 +2476,7 @@ export default function TestPage() {
                 description={cfg.description}
                 testCases={cfg.testCases}
                 durationSecs={mlDuration}
+                orientation={orientation}
               />
             ))}
           </div>
@@ -1873,8 +2503,8 @@ export default function TestPage() {
 
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: 40,
+            gridTemplateColumns: gridCols,
+            gap: gridGap,
           }}>
             {ML_NN_BASICS_CONFIGS.map(cfg => (
               <DiagramCard
@@ -1884,6 +2514,7 @@ export default function TestPage() {
                 description={cfg.description}
                 testCases={cfg.testCases}
                 durationSecs={mlDuration}
+                orientation={orientation}
               />
             ))}
           </div>
@@ -1910,8 +2541,8 @@ export default function TestPage() {
 
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: 40,
+            gridTemplateColumns: gridCols,
+            gap: gridGap,
           }}>
             {ML_UNSUPERVISED_EVAL_CONFIGS.map(cfg => (
               <DiagramCard
@@ -1921,6 +2552,7 @@ export default function TestPage() {
                 description={cfg.description}
                 testCases={cfg.testCases}
                 durationSecs={mlDuration}
+                orientation={orientation}
               />
             ))}
           </div>
@@ -1947,8 +2579,8 @@ export default function TestPage() {
 
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: 40,
+            gridTemplateColumns: gridCols,
+            gap: gridGap,
           }}>
             {ML_DEEP_CONFIGS.map(cfg => (
               <DiagramCard
@@ -1958,6 +2590,7 @@ export default function TestPage() {
                 description={cfg.description}
                 testCases={cfg.testCases}
                 durationSecs={mlDuration}
+                orientation={orientation}
               />
             ))}
           </div>
@@ -1984,8 +2617,8 @@ export default function TestPage() {
 
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: 40,
+            gridTemplateColumns: gridCols,
+            gap: gridGap,
           }}>
             {ML_RL_CONFIGS.map(cfg => (
               <DiagramCard
@@ -1995,6 +2628,7 @@ export default function TestPage() {
                 description={cfg.description}
                 testCases={cfg.testCases}
                 durationSecs={mlDuration}
+                orientation={orientation}
               />
             ))}
           </div>
@@ -2050,7 +2684,7 @@ export default function TestPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 40 }}>
             {AGENT_FOUNDATIONS_CONFIGS.map(cfg => (
               <DiagramCard key={cfg.type} type={cfg.type} name={cfg.name}
-                description={cfg.description} testCases={cfg.testCases} durationSecs={agentDuration} />
+                description={cfg.description} testCases={cfg.testCases} durationSecs={agentDuration} orientation={orientation} />
             ))}
           </div>
 
@@ -2076,7 +2710,7 @@ export default function TestPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 40 }}>
             {AGENT_TOOLUSE_CONFIGS.map(cfg => (
               <DiagramCard key={cfg.type} type={cfg.type} name={cfg.name}
-                description={cfg.description} testCases={cfg.testCases} durationSecs={agentDuration} />
+                description={cfg.description} testCases={cfg.testCases} durationSecs={agentDuration} orientation={orientation} />
             ))}
           </div>
 
@@ -2102,7 +2736,7 @@ export default function TestPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 40 }}>
             {AGENT_MEMORY_CONFIGS.map(cfg => (
               <DiagramCard key={cfg.type} type={cfg.type} name={cfg.name}
-                description={cfg.description} testCases={cfg.testCases} durationSecs={agentDuration} />
+                description={cfg.description} testCases={cfg.testCases} durationSecs={agentDuration} orientation={orientation} />
             ))}
           </div>
 
@@ -2128,7 +2762,7 @@ export default function TestPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 40 }}>
             {AGENT_REASONING_CONFIGS.map(cfg => (
               <DiagramCard key={cfg.type} type={cfg.type} name={cfg.name}
-                description={cfg.description} testCases={cfg.testCases} durationSecs={agentDuration} />
+                description={cfg.description} testCases={cfg.testCases} durationSecs={agentDuration} orientation={orientation} />
             ))}
           </div>
 
@@ -2154,7 +2788,7 @@ export default function TestPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 40 }}>
             {AGENT_ARCH_CONFIGS.map(cfg => (
               <DiagramCard key={cfg.type} type={cfg.type} name={cfg.name}
-                description={cfg.description} testCases={cfg.testCases} durationSecs={agentDuration} />
+                description={cfg.description} testCases={cfg.testCases} durationSecs={agentDuration} orientation={orientation} />
             ))}
           </div>
 
@@ -2180,7 +2814,7 @@ export default function TestPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 40 }}>
             {AGENT_SAFETY_CONFIGS.map(cfg => (
               <DiagramCard key={cfg.type} type={cfg.type} name={cfg.name}
-                description={cfg.description} testCases={cfg.testCases} durationSecs={agentDuration} />
+                description={cfg.description} testCases={cfg.testCases} durationSecs={agentDuration} orientation={orientation} />
             ))}
           </div>
         </section>
@@ -2234,7 +2868,7 @@ export default function TestPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 40 }}>
             {ALGO_FOUNDATIONS_CONFIGS.map(cfg => (
               <DiagramCard key={cfg.type} type={cfg.type} name={cfg.name}
-                description={cfg.description} testCases={cfg.testCases} durationSecs={algoDuration} />
+                description={cfg.description} testCases={cfg.testCases} durationSecs={algoDuration} orientation={orientation} />
             ))}
           </div>
 
@@ -2260,7 +2894,7 @@ export default function TestPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 40 }}>
             {ALGO_SORTING_CONFIGS.map(cfg => (
               <DiagramCard key={cfg.type} type={cfg.type} name={cfg.name}
-                description={cfg.description} testCases={cfg.testCases} durationSecs={algoDuration} />
+                description={cfg.description} testCases={cfg.testCases} durationSecs={algoDuration} orientation={orientation} />
             ))}
           </div>
         </section>
