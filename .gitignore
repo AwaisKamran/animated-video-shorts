@@ -45,3 +45,6 @@ coverage/
 # Misc
 .vercel
 .turbo
+
+# Claude Code local session files
+.claude/
