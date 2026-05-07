@@ -110,15 +110,7 @@ export const ParallelToolsDiagram: React.FC<Props> = ({ frame, duration, keyTerm
               strokeWidth={execP > 0 ? 2.5 : 1.5}
               filter={execP > 0 ? "url(#pt-glow-sm)" : undefined}
             />
-            {/* Gear spin during exec */}
-            {execP > 0 && (
-              <text x={pos.x - 12} y={pos.y + 4} textAnchor="middle"
-                fill={tool.color} fontFamily={T.sans} fontSize="18"
-                transform={`rotate(${execP * 360}, ${pos.x - 12}, ${pos.y + 4})`}>
-                ⚙
-              </text>
-            )}
-            <text x={pos.x + (execP > 0 ? 6 : 0)} y={pos.y + 6} textAnchor="middle"
+            <text x={pos.x} y={pos.y + 6} textAnchor="middle"
               fill={tool.color} fontFamily={T.mono} fontSize="13" fontWeight="600">
               {execP > 0 ? tool.label : tool.label}
             </text>

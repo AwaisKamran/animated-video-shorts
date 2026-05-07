@@ -1,6 +1,7 @@
 import React from "react";
 import { interpolate } from "remotion";
 import { T } from "../theme";
+import { NodeIcon } from "../components/NodeIcon";
 
 interface Props { frame: number; duration: number; keyTerms?: string[] }
 
@@ -81,10 +82,9 @@ export const OrchestratorDiagram: React.FC<Props> = ({ frame, duration, keyTerms
           fill={T.violet} fontFamily={T.sans} fontSize="14" fontWeight="800" letterSpacing="1">
           ORCH.
         </text>
-        <text x={ORC_X} y={ORC_Y + 14} textAnchor="middle"
-          fill={T.textDim} fontFamily={T.sans} fontSize="22">
-          🧠
-        </text>
+        <g transform={`translate(${ORC_X - 14}, ${ORC_Y - 10})`}>
+          <NodeIcon type="server" size={28} color={T.violet} />
+        </g>
         {/* Thinking dots during plan phase */}
         {planP > 0 && planP < 1 && (
           <>

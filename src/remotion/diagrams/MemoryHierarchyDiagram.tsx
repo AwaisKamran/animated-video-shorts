@@ -22,12 +22,12 @@ const LAYERS = [
   {
     id: "working", label: "WORKING MEMORY", sublabel: "Session",
     color: T.violet, capacity: "Persistent", y: 250, h: 130,
-    bubbles: ["Summary: User asked about X", "Key fact: Prefers Python"],
+    bubbles: ["Summary: User asked X", "Key: Prefers Python"],
   },
   {
     id: "long",    label: "LONG-TERM",    sublabel: "Vector DB",
     color: T.mint,   capacity: "Unlimited", y: 420, h: 130,
-    bubbles: ["Doc: API Guide", "Doc: FAQ 2023", "Doc: Changelog", "Doc: Setup", "..."],
+    bubbles: ["Doc: API Guide", "Doc: FAQ 2023", "Doc: Changelog"],
   },
 ];
 
@@ -57,11 +57,11 @@ export const MemoryHierarchyDiagram: React.FC<Props> = ({ frame, duration, keyTe
           <feGaussianBlur stdDeviation="4" result="b"/>
           <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
-        <marker id="mh-arr-down" markerWidth="8" markerHeight="8" refX="4" refY="6" orient="auto">
-          <path d="M0,0 L4,8 L8,0 z" fill={T.textDim} />
+        <marker id="mh-arr-down" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill={T.textDim} />
         </marker>
-        <marker id="mh-arr-up" markerWidth="8" markerHeight="8" refX="4" refY="2" orient="auto">
-          <path d="M0,8 L4,0 L8,8 z" fill={T.mint} />
+        <marker id="mh-arr-up" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill={T.mint} />
         </marker>
       </defs>
 
@@ -105,19 +105,21 @@ export const MemoryHierarchyDiagram: React.FC<Props> = ({ frame, duration, keyTe
       {msgsIn > 0 && LAYERS.map((layer, li) => {
         const startX = LAYER_X + 28;
         return layer.bubbles.map((bubble, bi) => {
-          const bubbleProgress = p(frame, duration, 0.25 + (li * 0.06 + bi * 0.04), 0.45 + li * 0.04);
+          const startT = 0.25 + (li * 0.06 + bi * 0.04);
+          const endT   = Math.max(startT + 0.06, 0.45 + li * 0.04);
+          const bubbleProgress = p(frame, duration, startT, endT);
           if (bubbleProgress <= 0) return null;
           return (
             <g key={`${li}-${bi}`} opacity={bubbleProgress}>
               <rect
-                x={startX + bi * 180}
+                x={startX + bi * 170}
                 y={layer.y + 68}
-                width={170} height={38} rx="8"
+                width={160} height={38} rx="8"
                 fill={layer.color} fillOpacity={0.12}
                 stroke={layer.color} strokeWidth="1"
               />
               <text
-                x={startX + bi * 180 + 12}
+                x={startX + bi * 170 + 12}
                 y={layer.y + 92}
                 fill={layer.color} fontFamily={T.mono} fontSize="10">
                 {bubble}
@@ -167,11 +169,11 @@ export const MemoryHierarchyDiagram: React.FC<Props> = ({ frame, duration, keyTe
             stroke={T.mint} strokeWidth="2.5"
             markerEnd="url(#mh-arr-up)"
           />
-          <rect x={W / 2 + 130} y={(LAYERS[0].y + LAYERS[2].y) / 2 - 16} width={90} height={32} rx="16"
+          <rect x={W / 2 + 130} y={216} width={90} height={28} rx="14"
             fill={T.mint} fillOpacity={0.15}
             stroke={T.mint} strokeWidth="1.5"
           />
-          <text x={W / 2 + 175} y={(LAYERS[0].y + LAYERS[2].y) / 2 + 6}
+          <text x={W / 2 + 175} y={235}
             textAnchor="middle"
             fill={T.mint} fontFamily={T.sans} fontSize="12" fontWeight="700" letterSpacing="1">
             RECALL

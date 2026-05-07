@@ -956,6 +956,154 @@ const AGENT_SAFETY_CONFIGS = [
   },
 ];
 
+const ALGO_FOUNDATIONS_CONFIGS = [
+  {
+    type: "asymptotic" as DiagramType,
+    name: "Asymptotic Notation",
+    description: "Big O / Θ / Ω · upper, lower, and tight bounds",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "BIG O", keyTerms: ["BIG O"] },
+      { label: "OMEGA", keyTerms: ["OMEGA"] },
+      { label: "THETA", keyTerms: ["THETA"] },
+    ],
+  },
+  {
+    type: "growthrates" as DiagramType,
+    name: "Growth Rates",
+    description: "O(1) · O(log n) · O(n) · O(n log n) · O(n²) · O(2ⁿ) · O(n!)",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "CONSTANT", keyTerms: ["CONSTANT"] },
+      { label: "LOGARITHMIC", keyTerms: ["LOGARITHMIC"] },
+      { label: "LINEAR", keyTerms: ["LINEAR"] },
+      { label: "QUADRATIC", keyTerms: ["QUADRATIC"] },
+      { label: "EXPONENTIAL", keyTerms: ["EXPONENTIAL"] },
+    ],
+  },
+  {
+    type: "casecomplexity" as DiagramType,
+    name: "Best / Average / Worst Case",
+    description: "Three input types · three curves · complexity summary table",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "BEST CASE", keyTerms: ["BEST CASE"] },
+      { label: "AVERAGE CASE", keyTerms: ["AVERAGE CASE"] },
+      { label: "WORST CASE", keyTerms: ["WORST CASE"] },
+    ],
+  },
+  {
+    type: "mastertheorem" as DiagramType,
+    name: "Master Theorem",
+    description: "T(n) = aT(n/b) + f(n) · recursion tree · three cases",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "MASTER THEOREM", keyTerms: ["MASTER THEOREM"] },
+      { label: "RECURRENCE", keyTerms: ["RECURRENCE"] },
+    ],
+  },
+  {
+    type: "amortized" as DiagramType,
+    name: "Amortized Analysis",
+    description: "Aggregate · Accounting · Potential — three analysis methods",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "AMORTIZED", keyTerms: ["AMORTIZED"] },
+      { label: "AGGREGATE", keyTerms: ["AGGREGATE"] },
+      { label: "ACCOUNTING", keyTerms: ["ACCOUNTING"] },
+      { label: "POTENTIAL", keyTerms: ["POTENTIAL"] },
+    ],
+  },
+];
+
+const ALGO_SORTING_CONFIGS = [
+  {
+    type: "bubblesort" as DiagramType,
+    name: "Bubble Sort",
+    description: "Adjacent swaps · largest bubbles right · O(n²) worst",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "BUBBLE", keyTerms: ["BUBBLE"] },
+      { label: "SWAP", keyTerms: ["SWAP"] },
+      { label: "PASS", keyTerms: ["PASS"] },
+    ],
+  },
+  {
+    type: "insertionsort" as DiagramType,
+    name: "Insertion Sort",
+    description: "Sorted prefix grows · current element slides left · O(n²) avg",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "INSERTION", keyTerms: ["INSERTION"] },
+      { label: "SORTED PREFIX", keyTerms: ["SORTED PREFIX"] },
+    ],
+  },
+  {
+    type: "selectionsort" as DiagramType,
+    name: "Selection Sort",
+    description: "Min-finding sweep · swap to front · O(n²) always",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "SELECTION", keyTerms: ["SELECTION"] },
+      { label: "MINIMUM", keyTerms: ["MINIMUM"] },
+    ],
+  },
+  {
+    type: "mergesort" as DiagramType,
+    name: "Merge Sort",
+    description: "Divide and conquer · recursive split + merge · O(n log n)",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "MERGE SORT", keyTerms: ["MERGE SORT"] },
+      { label: "DIVIDE", keyTerms: ["DIVIDE"] },
+      { label: "CONQUER", keyTerms: ["CONQUER"] },
+    ],
+  },
+  {
+    type: "quicksort" as DiagramType,
+    name: "Quick Sort",
+    description: "Pivot partitioning · i/j pointers · O(n log n) avg",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "QUICKSORT", keyTerms: ["QUICKSORT"] },
+      { label: "PIVOT", keyTerms: ["PIVOT"] },
+      { label: "PARTITION", keyTerms: ["PARTITION"] },
+    ],
+  },
+  {
+    type: "heapsort" as DiagramType,
+    name: "Heap Sort",
+    description: "Build max-heap · extract-max · tree + array view · O(n log n)",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "HEAP", keyTerms: ["HEAP"] },
+      { label: "HEAPIFY", keyTerms: ["HEAPIFY"] },
+      { label: "EXTRACT", keyTerms: ["EXTRACT"] },
+    ],
+  },
+  {
+    type: "countingsort" as DiagramType,
+    name: "Counting Sort",
+    description: "Bucket counts · cumulative sums · stable output · O(n+k)",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "COUNTING", keyTerms: ["COUNTING"] },
+      { label: "BUCKET", keyTerms: ["BUCKET"] },
+      { label: "STABLE", keyTerms: ["STABLE"] },
+    ],
+  },
+  {
+    type: "sortcompare" as DiagramType,
+    name: "Sorting Comparison Table",
+    description: "Best / Average / Worst / Space / Stable — 7 algorithms side-by-side",
+    testCases: [
+      { label: "Default", keyTerms: [] as string[] },
+      { label: "COMPARISON", keyTerms: ["COMPARISON"] },
+      { label: "STABLE", keyTerms: ["STABLE"] },
+    ],
+  },
+];
+
 const DIAGRAM_COLORS: Record<string, string> = {
   // Networking
   handshake: "#00C8E6",
@@ -1056,6 +1204,21 @@ const DIAGRAM_COLORS: Record<string, string> = {
   orchestrator:   "#7B5EF8",
   // Agentic AI — Safety
   guardrails:     "#00D4A0",
+  // Algorithm Analysis — Foundations
+  asymptotic:     "#A78BFA",
+  growthrates:    "#00C8E6",
+  casecomplexity: "#F5A623",
+  mastertheorem:  "#A78BFA",
+  amortized:      "#00D4A0",
+  // Algorithm Analysis — Sorting
+  bubblesort:     "#00C8E6",
+  insertionsort:  "#A78BFA",
+  selectionsort:  "#F5A623",
+  mergesort:      "#00D4A0",
+  quicksort:      "#F5506B",
+  heapsort:       "#A78BFA",
+  countingsort:   "#00C8E6",
+  sortcompare:    "#F5A623",
 };
 
 const SCENE_CONFIGS: { label: string; description: string; script: VideoScript }[] = [
@@ -1354,10 +1517,27 @@ function DurationToggle({ value, onChange, accentColor }: DurationToggleProps) {
 // Page
 // ---------------------------------------------------------------------------
 
+type SubjectFilter = "all" | "networking" | "ml" | "agentic" | "algorithms";
+
+const SUBJECT_FILTERS: { value: SubjectFilter; label: string; color: string }[] = [
+  { value: "all",        label: "All",              color: "#E2E2E2" },
+  { value: "agentic",    label: "Agentic AI",       color: "#F5A623" },
+  { value: "algorithms", label: "Algorithms",       color: "#00D4A0" },
+  { value: "ml",         label: "Machine Learning", color: "#7B5EF8" },
+  { value: "networking", label: "Networking",       color: "#00C8E6" },
+];
+
 export default function TestPage() {
   const [netDuration, setNetDuration] = useState(8);
   const [mlDuration, setMlDuration] = useState(8);
   const [agentDuration, setAgentDuration] = useState(8);
+  const [algoDuration, setAlgoDuration] = useState(8);
+  const [subject, setSubject] = useState<SubjectFilter>("all");
+
+  const showNet        = subject === "all" || subject === "networking";
+  const showMl         = subject === "all" || subject === "ml";
+  const showAgentic    = subject === "all" || subject === "agentic";
+  const showAlgorithms = subject === "all" || subject === "algorithms";
 
   return (
     <main style={{ minHeight: "100vh", background: "var(--bg)" }}>
@@ -1407,9 +1587,52 @@ export default function TestPage() {
       {/* Content */}
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "48px 40px 80px" }}>
 
+        {/* Subject filter bar */}
+        <div style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 12,
+          marginBottom: 48,
+          paddingBottom: 24,
+          borderBottom: "1px solid var(--border)",
+        }}>
+          <span style={{
+            fontSize: 10,
+            fontWeight: 700,
+            letterSpacing: 1.5,
+            color: "var(--text-3)",
+          }}>
+            SUBJECT
+          </span>
+          {SUBJECT_FILTERS.map(opt => {
+            const isActive = subject === opt.value;
+            return (
+              <button
+                key={opt.value}
+                onClick={() => setSubject(opt.value)}
+                style={{
+                  padding: "6px 16px",
+                  borderRadius: 100,
+                  fontSize: 12,
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  fontFamily: "var(--sans)",
+                  border: isActive ? `1px solid ${opt.color}` : "1px solid var(--border)",
+                  background: isActive ? `${opt.color}26` : "transparent",
+                  color: isActive ? opt.color : "var(--text-2)",
+                  transition: "all 0.15s",
+                }}
+              >
+                {opt.label}
+              </button>
+            );
+          })}
+        </div>
+
         {/* ---------------------------------------------------------------- */}
         {/* Section 1: Networking Diagrams                                   */}
         {/* ---------------------------------------------------------------- */}
+        {showNet && (
         <section style={{ marginBottom: 72 }}>
           {/* Section header row */}
           <div style={{
@@ -1451,10 +1674,12 @@ export default function TestPage() {
             ))}
           </div>
         </section>
+        )}
 
         {/* ---------------------------------------------------------------- */}
         {/* Section 2: Machine Learning Diagrams                             */}
         {/* ---------------------------------------------------------------- */}
+        {showMl && (
         <section style={{ marginBottom: 72 }}>
           {/* Section header row */}
           <div style={{
@@ -1774,10 +1999,12 @@ export default function TestPage() {
             ))}
           </div>
         </section>
+        )}
 
         {/* ---------------------------------------------------------------- */}
         {/* Section 3: Agentic AI Diagrams                                   */}
         {/* ---------------------------------------------------------------- */}
+        {showAgentic && (
         <section style={{ marginBottom: 72 }}>
           {/* Section header */}
           <div style={{
@@ -1957,9 +2184,90 @@ export default function TestPage() {
             ))}
           </div>
         </section>
+        )}
 
         {/* ---------------------------------------------------------------- */}
-        {/* Section 4: Scene Previews                                        */}
+        {/* Section 4: Algorithm Analysis Diagrams                           */}
+        {/* ---------------------------------------------------------------- */}
+        {showAlgorithms && (
+        <section style={{ marginBottom: 72 }}>
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 24,
+            marginBottom: 28,
+          }}>
+            <div style={{
+              fontSize: 11,
+              fontWeight: 700,
+              letterSpacing: 2,
+              color: "#00D4A0",
+            }}>
+              ALGORITHM ANALYSIS DIAGRAMS
+            </div>
+            <DurationToggle
+              value={algoDuration}
+              onChange={setAlgoDuration}
+              accentColor="#00D4A0"
+            />
+          </div>
+
+          {/* ── FOUNDATIONS ── */}
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 16,
+            marginBottom: 28,
+          }}>
+            <div style={{ flex: 1, height: 1, background: "var(--border)" }} />
+            <div style={{
+              fontSize: 10,
+              fontWeight: 700,
+              letterSpacing: 2,
+              color: "var(--text-3)",
+              whiteSpace: "nowrap",
+            }}>
+              FOUNDATIONS
+            </div>
+            <div style={{ flex: 1, height: 1, background: "var(--border)" }} />
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 40 }}>
+            {ALGO_FOUNDATIONS_CONFIGS.map(cfg => (
+              <DiagramCard key={cfg.type} type={cfg.type} name={cfg.name}
+                description={cfg.description} testCases={cfg.testCases} durationSecs={algoDuration} />
+            ))}
+          </div>
+
+          {/* ── SORTING ── */}
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 16,
+            margin: "52px 0 28px",
+          }}>
+            <div style={{ flex: 1, height: 1, background: "var(--border)" }} />
+            <div style={{
+              fontSize: 10,
+              fontWeight: 700,
+              letterSpacing: 2,
+              color: "var(--text-3)",
+              whiteSpace: "nowrap",
+            }}>
+              SORTING
+            </div>
+            <div style={{ flex: 1, height: 1, background: "var(--border)" }} />
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 40 }}>
+            {ALGO_SORTING_CONFIGS.map(cfg => (
+              <DiagramCard key={cfg.type} type={cfg.type} name={cfg.name}
+                description={cfg.description} testCases={cfg.testCases} durationSecs={algoDuration} />
+            ))}
+          </div>
+        </section>
+        )}
+
+        {/* ---------------------------------------------------------------- */}
+        {/* Section 5: Scene Previews                                        */}
         {/* ---------------------------------------------------------------- */}
         <section>
           <div style={{

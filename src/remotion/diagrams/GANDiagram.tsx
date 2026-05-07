@@ -1,6 +1,7 @@
 import React from "react";
 import { interpolate } from "remotion";
 import { T } from "../theme";
+import { NodeIcon } from "../components/NodeIcon";
 
 interface Props { frame: number; duration: number; keyTerms?: string[] }
 
@@ -78,9 +79,9 @@ export const GANDiagram: React.FC<Props> = ({ frame, duration, keyTerms = [] }) 
           strokeWidth={hiGen ? 3 : 2}
           filter={hiGen ? "url(#gan-glow)" : undefined}
         />
-        {/* Lightning spark */}
-        <text x={GEN_CX} y={GEN_Y + 46} textAnchor="middle"
-          fill={T.violet} fontFamily={T.sans} fontSize="26">⚡</text>
+        <g transform={`translate(${GEN_CX - 14}, ${GEN_Y + 22})`}>
+          <NodeIcon type="router" size={28} color={T.violet} />
+        </g>
         <text x={GEN_CX} y={GEN_Y + 80} textAnchor="middle"
           fill={T.violet} fontFamily={T.mono} fontSize="14" fontWeight="800" letterSpacing="1">
           GENERATOR G
@@ -102,9 +103,9 @@ export const GANDiagram: React.FC<Props> = ({ frame, duration, keyTerms = [] }) 
           strokeWidth={hiDisc ? 3 : 2}
           filter={hiDisc ? "url(#gan-glow)" : undefined}
         />
-        {/* Shield icon text */}
-        <text x={DISC_CX} y={DISC_Y + 46} textAnchor="middle"
-          fill={T.cyan} fontFamily={T.sans} fontSize="26">🛡</text>
+        <g transform={`translate(${DISC_CX - 14}, ${DISC_Y + 22})`}>
+          <NodeIcon type="shield" size={28} color={T.cyan} />
+        </g>
         <text x={DISC_CX} y={DISC_Y + 80} textAnchor="middle"
           fill={T.cyan} fontFamily={T.mono} fontSize="13" fontWeight="800" letterSpacing="1">
           DISCRIMINATOR D

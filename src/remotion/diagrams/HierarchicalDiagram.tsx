@@ -48,11 +48,11 @@ export const HierarchicalDiagram: React.FC<Props> = ({ frame, duration, keyTerms
           <feGaussianBlur stdDeviation="5" result="b"/>
           <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
-        <marker id="hier-down" markerWidth="8" markerHeight="8" refX="4" refY="6" orient="auto">
-          <path d="M0,0 L4,8 L8,0 z" fill={T.violet} />
+        <marker id="hier-down" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill={T.violet} />
         </marker>
-        <marker id="hier-up" markerWidth="8" markerHeight="8" refX="4" refY="2" orient="auto">
-          <path d="M0,8 L4,0 L8,8 z" fill={T.mint} />
+        <marker id="hier-up" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill={T.mint} />
         </marker>
       </defs>
 
@@ -68,8 +68,8 @@ export const HierarchicalDiagram: React.FC<Props> = ({ frame, duration, keyTerms
           SUPERVISOR
         </text>
         <text x={SUP_CX} y={SUP_Y + 60} textAnchor="middle"
-          fill={T.textDim} fontFamily={T.sans} fontSize="11" letterSpacing="1">
-          plans · decomposes · aggregates
+          fill={T.textDim} fontFamily={T.sans} fontSize="10">
+          plan · decompose · aggregate
         </text>
       </g>
 
@@ -80,9 +80,8 @@ export const HierarchicalDiagram: React.FC<Props> = ({ frame, duration, keyTerms
         const isWorking = processP > 0;
         const hiWorker = hi(w.label.toUpperCase());
 
-        // Delegate arrow (down)
-        const arrowDownX = wCX;
-        const arrowUpX   = wCX;
+        const midLX = (SUP_CX + wCX) / 2;
+        const midLY = (SUP_Y + SUP_H + WORK_Y) / 2;
 
         return (
           <g key={w.id}>
@@ -101,33 +100,21 @@ export const HierarchicalDiagram: React.FC<Props> = ({ frame, duration, keyTerms
                 fill={w.color} fontFamily={T.mono} fontSize="11" opacity={0.8}>
                 {w.sublabel}
               </text>
-
-              {/* Process glow */}
-              {isWorking && processP < 1 && (
-                <text x={wCX} y={WORK_Y + 74} textAnchor="middle"
-                  fill={w.color} fontFamily={T.sans} fontSize="14"
-                  transform={`rotate(${processP * 360}, ${wCX}, ${WORK_Y + 74})`}>
-                  ⚙
-                </text>
-              )}
             </g>
 
             {/* Delegate arrow (supervisor → worker) */}
             {delegateP > 0 && (
               <g>
-                <line x1={arrowDownX} y1={SUP_Y + SUP_H}
-                  x2={arrowDownX} y2={WORK_Y}
+                <line x1={SUP_CX - 6} y1={SUP_Y + SUP_H}
+                  x2={wCX - 6} y2={WORK_Y}
                   stroke={hiDelegate ? T.violet : T.border}
                   strokeWidth={hiDelegate ? 2.5 : 1.5}
                   strokeDasharray={delegateP < 1 ? `${delegateP * 100} 100` : "none"}
                   markerEnd="url(#hier-down)"
                   filter={hiDelegate ? "url(#hier-glow-sm)" : undefined}
                 />
-                {/* Task label */}
-                <rect x={arrowDownX - 40} y={(SUP_Y + SUP_H + WORK_Y) / 2 - 12}
-                  width={80} height={24} rx="12" fill={T.bgDeep}
-                />
-                <text x={arrowDownX} y={(SUP_Y + SUP_H + WORK_Y) / 2 + 4} textAnchor="middle"
+                <rect x={midLX - 40} y={midLY - 12} width={80} height={24} rx="12" fill={T.bgDeep} />
+                <text x={midLX} y={midLY + 4} textAnchor="middle"
                   fill={T.violet} fontFamily={T.mono} fontSize="10" opacity={delegateP}>
                   {w.sublabel}
                 </text>
@@ -136,8 +123,8 @@ export const HierarchicalDiagram: React.FC<Props> = ({ frame, duration, keyTerms
 
             {/* Report arrow (worker → supervisor) */}
             {reportP > 0 && (
-              <line x1={arrowUpX} y1={WORK_Y}
-                x2={arrowUpX} y2={SUP_Y + SUP_H}
+              <line x1={wCX + 6} y1={WORK_Y}
+                x2={SUP_CX + 6} y2={SUP_Y + SUP_H}
                 stroke={hiAggregate ? T.mint : T.mint}
                 strokeWidth={hiAggregate ? 2.5 : 1.5}
                 strokeDasharray="none"

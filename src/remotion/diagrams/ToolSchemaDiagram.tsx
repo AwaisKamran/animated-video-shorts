@@ -176,11 +176,11 @@ export const ToolSchemaDiagram: React.FC<Props> = ({ frame, duration, keyTerms =
             fill={T.mint} fontFamily={T.mono} fontSize="13">
             ✓ limit: number
           </text>
-          <rect x={570} y={618} width={460} height={38} rx="19"
+          <rect x={680} y={624} width={240} height={40} rx="20"
             fill={T.mint} fillOpacity={0.12}
             stroke={T.mint} strokeWidth="1.5"
           />
-          <text x={800} y={643} textAnchor="middle"
+          <text x={800} y={650} textAnchor="middle"
             fill={T.mint} fontFamily={T.sans} fontSize="13" fontWeight="800" letterSpacing="2">
             SCHEMA VALID
           </text>

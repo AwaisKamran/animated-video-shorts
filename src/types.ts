@@ -80,6 +80,19 @@ export type DiagramType =
   | "handoff"
   | "orchestrator"
   | "guardrails"
+  | "asymptotic"
+  | "growthrates"
+  | "casecomplexity"
+  | "mastertheorem"
+  | "amortized"
+  | "bubblesort"
+  | "insertionsort"
+  | "selectionsort"
+  | "mergesort"
+  | "quicksort"
+  | "heapsort"
+  | "countingsort"
+  | "sortcompare"
   | "none";
 
 export interface VideoScene {

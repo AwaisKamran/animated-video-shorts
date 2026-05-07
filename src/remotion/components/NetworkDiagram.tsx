@@ -81,6 +81,19 @@ import { HierarchicalDiagram } from "../diagrams/HierarchicalDiagram";
 import { HandoffDiagram } from "../diagrams/HandoffDiagram";
 import { OrchestratorDiagram } from "../diagrams/OrchestratorDiagram";
 import { GuardrailsDiagram } from "../diagrams/GuardrailsDiagram";
+import { AsymptoticDiagram } from "../diagrams/AsymptoticDiagram";
+import { GrowthRatesDiagram } from "../diagrams/GrowthRatesDiagram";
+import { CaseComplexityDiagram } from "../diagrams/CaseComplexityDiagram";
+import { MasterTheoremDiagram } from "../diagrams/MasterTheoremDiagram";
+import { AmortizedDiagram } from "../diagrams/AmortizedDiagram";
+import { BubbleSortDiagram } from "../diagrams/BubbleSortDiagram";
+import { InsertionSortDiagram } from "../diagrams/InsertionSortDiagram";
+import { SelectionSortDiagram } from "../diagrams/SelectionSortDiagram";
+import { MergeSortDiagram } from "../diagrams/MergeSortDiagram";
+import { QuickSortDiagram } from "../diagrams/QuickSortDiagram";
+import { HeapSortDiagram } from "../diagrams/HeapSortDiagram";
+import { CountingSortDiagram } from "../diagrams/CountingSortDiagram";
+import { SortComparisonDiagram } from "../diagrams/SortComparisonDiagram";
 
 interface Props {
   type: DiagramType;
@@ -174,6 +187,19 @@ export const NetworkDiagram: React.FC<Props> = ({ type, frame, duration, keyTerm
     case "handoff":       return <HandoffDiagram {...props} />;
     case "orchestrator":  return <OrchestratorDiagram {...props} />;
     case "guardrails":    return <GuardrailsDiagram {...props} />;
+    case "asymptotic":    return <AsymptoticDiagram {...props} />;
+    case "growthrates":   return <GrowthRatesDiagram {...props} />;
+    case "casecomplexity": return <CaseComplexityDiagram {...props} />;
+    case "mastertheorem": return <MasterTheoremDiagram {...props} />;
+    case "amortized":     return <AmortizedDiagram {...props} />;
+    case "bubblesort":    return <BubbleSortDiagram {...props} />;
+    case "insertionsort": return <InsertionSortDiagram {...props} />;
+    case "selectionsort": return <SelectionSortDiagram {...props} />;
+    case "mergesort":     return <MergeSortDiagram {...props} />;
+    case "quicksort":     return <QuickSortDiagram {...props} />;
+    case "heapsort":      return <HeapSortDiagram {...props} />;
+    case "countingsort":  return <CountingSortDiagram {...props} />;
+    case "sortcompare":   return <SortComparisonDiagram {...props} />;
     default:             return null;
   }
 };

@@ -132,7 +132,7 @@ export const HTTPDiagram: React.FC<Props> = ({ frame, duration, keyTerms = [] })
             <g transform={`translate(${httpsBeadX}, -30)`}>
               <rect x="-48" y="-16" width="96" height="28" rx="14" fill={T.mint} opacity="0.15" />
               <text x="0" y="0" textAnchor="middle"
-                fill={T.mint} fontFamily={T.mono} fontSize="16">🔒 ██████</text>
+                fill={T.mint} fontFamily={T.mono} fontSize="16">██████</text>
             </g>
           )}
         </g>

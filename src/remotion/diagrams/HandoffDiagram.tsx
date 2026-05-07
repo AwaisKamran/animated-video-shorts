@@ -103,18 +103,23 @@ export const HandoffDiagram: React.FC<Props> = ({ frame, duration, keyTerms = []
 
         return (
           <g key={spec.id} opacity={structIn}>
-            {/* Arrow */}
-            <line
-              x1={TRIAGE_CX + (specCX - TRIAGE_CX) * 0.1}
-              y1={TRIAGE_Y + TRIAGE_H}
-              x2={TRIAGE_CX + (specCX - TRIAGE_CX) * (classifyP > 0 ? 0.9 : 0.3)}
-              y2={TRIAGE_Y + TRIAGE_H + (spec.y - TRIAGE_Y - TRIAGE_H) * (classifyP > 0 ? 0.9 : 0.3)}
-              stroke={arrowColor}
-              strokeWidth={arrowWidth}
-              strokeDasharray={dim ? "5 4" : "none"}
-              opacity={dim ? 0.3 : 1}
-              filter={isChosen && classifyP > 0.5 ? "url(#ho-glow-sm)" : undefined}
-            />
+            {/* Arrow — only renders during the classification phase, growing from triage to specialist */}
+            {classifyP > 0 && (() => {
+              const drawProg = Math.min(1, classifyP * 1.5);
+              return (
+                <line
+                  x1={TRIAGE_CX}
+                  y1={TRIAGE_Y + TRIAGE_H}
+                  x2={TRIAGE_CX + (specCX - TRIAGE_CX) * drawProg}
+                  y2={TRIAGE_Y + TRIAGE_H + (spec.y - TRIAGE_Y - TRIAGE_H) * drawProg}
+                  stroke={arrowColor}
+                  strokeWidth={arrowWidth}
+                  strokeDasharray={dim ? "5 4" : "none"}
+                  opacity={dim ? 0.3 : 1}
+                  filter={isChosen && classifyP > 0.5 ? "url(#ho-glow-sm)" : undefined}
+                />
+              );
+            })()}
 
             {/* Specialist box */}
             <rect x={spec.x - SPEC_W / 2} y={spec.y} width={SPEC_W} height={SPEC_H} rx="14"

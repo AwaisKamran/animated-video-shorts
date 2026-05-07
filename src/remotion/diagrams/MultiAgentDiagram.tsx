@@ -112,13 +112,13 @@ export const MultiAgentDiagram: React.FC<Props> = ({ frame, duration, keyTerms =
               stroke={agent.color} strokeWidth={hiAgent ? 2.5 : 1.5}
               filter={hiAgent ? "url(#ma-glow)" : undefined}
             />
-            <text x={agent.x + 28} y={agent.y + BOX_H / 2 + 6} textAnchor="start"
+            <g transform={`translate(${agent.x + 14}, ${agent.y + BOX_H / 2 - 11})`}>
+              <NodeIcon type={agent.iconType} size={22} color={agent.color} />
+            </g>
+            <text x={agent.x + 46} y={agent.y + BOX_H / 2 + 6} textAnchor="start"
               fill={agent.color} fontFamily={T.sans} fontSize="13" fontWeight="800" letterSpacing="1">
               {agent.label}
             </text>
-            <g transform={`translate(${agent.x + BOX_W - 39}, ${agent.y + BOX_H / 2 - 11})`}>
-              <NodeIcon type={agent.iconType} size={22} color={agent.color} />
-            </g>
 
             {/* Done checkmark */}
             {isDone && (
